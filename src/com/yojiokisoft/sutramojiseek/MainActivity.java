@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
@@ -26,6 +27,11 @@ public class MainActivity extends Activity {
 		mCurrentLine = 0;
 		mSutraDao = SutraDao.getInstance();
 		mSutraDao.seek(0);
+
+		LinearLayout mokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
+		mokugyo.setVisibility(View.VISIBLE);
+		Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
+		mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
 
 		mButton = new Button[5][5];
 		mButton[0][0] = (Button) findViewById(R.id.button_1a);
@@ -95,7 +101,7 @@ public class MainActivity extends Activity {
 
 		mButton[lineNumber][0].setText(sutra);
 		mButton[lineNumber][0].setTag(mSutraDao.eof());
-		((MyButton)mButton[lineNumber][0]).setKana(mSutraDao.getKana());
+		((MyButton) mButton[lineNumber][0]).setKana(mSutraDao.getKana());
 		int cnt = 0;
 		for (int i = 1; i < max; i++) {
 			if (i == rand) {
@@ -184,4 +190,20 @@ public class MainActivity extends Activity {
 	private void showToast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
+
+	private View.OnClickListener mOnMokugyoButtonClicked = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			boolean eof = (Boolean) mButton[mCurrentLine][0].getTag();
+			if (eof) {
+				showToast("おわり");
+			}
+			printSutra(mCurrentLine);
+			mCurrentLine++;
+			if (mCurrentLine >= mTableRow.length) {
+				mCurrentLine = 0;
+			}
+			setCurrentLineBg();
+		}
+	};
 }

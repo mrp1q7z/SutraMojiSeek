@@ -3,5 +3,6 @@
 
     <color name="transparentButton">#00000000</color>
     <color name="gray_scale">#333333</color>
+    <color name="mokugyo_bg">#333333</color>
 
 </resources>
