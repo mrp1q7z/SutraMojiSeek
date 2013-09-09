@@ -1,0 +1,25 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it.
+    -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="@string/pref_mode_default"
+        android:entries="@array/pref_mode_titles"
+        android:entryValues="@array/pref_mode_values"
+        android:key="mode"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_mode" />
+    <ListPreference
+        android:defaultValue="@string/pref_speed_default"
+        android:entries="@array/pref_speed_titles"
+        android:entryValues="@array/pref_speed_values"
+        android:key="speed"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_speed" />
+
+</PreferenceScreen>

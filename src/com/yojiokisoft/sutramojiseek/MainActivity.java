@@ -1,9 +1,11 @@
 package com.yojiokisoft.sutramojiseek;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -13,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	private LinearLayout mMokugyo;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
 	private SutraDao mSutraDao;
@@ -28,10 +31,12 @@ public class MainActivity extends Activity {
 		mSutraDao = SutraDao.getInstance();
 		mSutraDao.seek(0);
 
-		LinearLayout mokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
-		mokugyo.setVisibility(View.VISIBLE);
-		Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
-		mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
+		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
+		if (SettingDao.getInstance().getMode().equals(MyConst.PK_MODE_RENSYU)) {
+			mMokugyo.setVisibility(View.VISIBLE);
+			Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
+			mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
+		}
 
 		mButton = new Button[5][5];
 		mButton[0][0] = (Button) findViewById(R.id.button_1a);
@@ -84,6 +89,22 @@ public class MainActivity extends Activity {
 		}
 
 		setCurrentLineBg();
+	}
+
+	/**
+	 * メニューが選択された
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			intent = new Intent(getApplicationContext(), SettingsActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			return true;
+		}
+		return false;
 	}
 
 	private void printSutra(int lineNumber) {
