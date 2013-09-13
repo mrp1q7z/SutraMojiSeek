@@ -14,6 +14,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -28,6 +30,9 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	private SoundPool mSound;
+	private int mSoundId;
+	private String mCurrentSoundName;
 	private LinearLayout mMokugyo;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
@@ -43,6 +48,15 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+
+		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+		mCurrentSoundName = SettingDao.getInstance().getRhythmSound();
+		int resId = MyResource.getResourceIdByName(mCurrentSoundName, "raw");
+		if (resId == 0) {
+			mSoundId = 0;
+		} else {
+			mSoundId = mSound.load(getApplicationContext(), resId, 0);
+		}
 
 		mCurrentLine = 0;
 		mSutraDao = SutraDao.getInstance();
@@ -211,10 +225,6 @@ public class MainActivity extends Activity {
 	private View.OnClickListener mOnButtonClicked = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// if (mSoundId != 0) {
-			// mSound.stop(mSoundId);
-			// mSound.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
-			// }
 
 			int lineNumber = -1;
 
@@ -278,10 +288,19 @@ public class MainActivity extends Activity {
 	};
 
 	private void nextMoji() {
-long startTime = System.currentTimeMillis();
-int time = (int) (startTime - mMoveTime);
-mIntervalKeisoku.add(time);
+		// debug >>>
+		long startTime = System.currentTimeMillis();
+		int time = (int) (startTime - mMoveTime);
+		mIntervalKeisoku.add(time);
+		// debug <<<
+
 		mMoveTime = System.currentTimeMillis();
+
+		if (mSoundId != 0) {
+			mSound.stop(mSoundId);
+			mSound.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
+		}
+
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
 		if (index == -1) {
 			showToast("おわり");

@@ -66,4 +66,8 @@ public class SettingDao {
 				mContext.getString(R.string.pref_speed_default));
 		return val;
 	}
+	
+	public String getRhythmSound() {
+		return "mp_poku";
+	}
 }

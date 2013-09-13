@@ -26,10 +26,7 @@ public class MyResource {
 	 * @return px
 	 */
 	public static int dpi2Px(int dpi) {
-		// TODO Auto-generated method stub
-		// float density =
-		// App.getInstance().getResources().getDisplayMetrics().density;
-		float density = 1.5f;
+		float density = App.getInstance().getResources().getDisplayMetrics().density;
 		int px = (int) (dpi * density + 0.5f);
 		return px;
 	}
@@ -39,5 +36,20 @@ public class MyResource {
 	 */
 	public static int getStatusBarHeight() {
 		return dpi2Px(25);
+	}
+
+	/**
+	 * リソース名からリソースIDを得る.
+	 * 
+	 * @param name
+	 *            リソース名
+	 * @param type
+	 *            リソースタイプ
+	 * @return リソースID
+	 */
+	public static int getResourceIdByName(String name, String type) {
+		App app = App.getInstance();
+		String packageName = app.getPackageName();
+		return app.getResources().getIdentifier(name, type, packageName);
 	}
 }
