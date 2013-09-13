@@ -3,29 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:id="@+id/adViewContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/black" >
-
-        <com.google.ads.AdView
-            android:id="@+id/adViewBanner"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/admob_id" />
-    </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/adViewContainer" >
+            android:layout_height="match_parent" >
 
             <TableRow
                 android:id="@+id/table_row1"
@@ -287,6 +271,42 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_bg3"
                 android:text="POKU" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/score_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Score:1234"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/replay_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onReplayButtonClicked"
+                android:text="Replay" />
+
+            <Button
+                android:id="@+id/exit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exit" />
+
+            <com.google.ads.AdView
+                android:id="@+id/adViewBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/admob_id" />
         </LinearLayout>
     </FrameLayout>
 

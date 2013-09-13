@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 	private int mSoundId;
 	private String mCurrentSoundName;
 	private LinearLayout mMokugyo;
+	private LinearLayout mScoreContainer;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
 	private SutraDao mSutraDao;
@@ -68,6 +69,8 @@ public class MainActivity extends Activity {
 		}
 		Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
 		mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
+
+		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 
 		mButton = new Button[5][5];
 		mButton[0][0] = (Button) findViewById(R.id.button_1a);
@@ -306,8 +309,8 @@ public class MainActivity extends Activity {
 		mTableRow[mCurrentLine].setBackgroundColor(Color.WHITE);
 	}
 
-	private void showToast(String msg) {
-		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+	private void showScore() {
+		mScoreContainer.setVisibility(View.VISIBLE);
 	}
 
 	private View.OnClickListener mOnMokugyoButtonClicked = new OnClickListener() {
@@ -316,6 +319,19 @@ public class MainActivity extends Activity {
 			nextMoji();
 		}
 	};
+
+	public void onReplayButtonClicked(View view) {
+		mScoreContainer.setVisibility(View.INVISIBLE);
+
+		mCurrentLine = 0;
+		mSutraDao.seek(0);
+
+		for (int i = 0; i < 5; i++) {
+			printSutra(i);
+		}
+
+		setCurrentLineBg();
+	}
 
 	private void nextMoji() {
 		// debug >>>
@@ -333,7 +349,7 @@ public class MainActivity extends Activity {
 
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
 		if (index == -1) {
-			showToast("おわり");
+			showScore();
 			return;
 		}
 		printSutra(mCurrentLine);
