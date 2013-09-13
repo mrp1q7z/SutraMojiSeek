@@ -3,17 +3,9 @@
     <string name="pref_header_general">一般設定</string>
     <string name="pref_ringtone_silent">Silent</string>
     
-    <string name="pref_title_mode">モード</string>
-    <string name="pref_mode_default">2</string>
-
-    <string-array name="pref_mode_titles">
-        <item>練習モード</item>
-        <item>一般モード</item>
-    </string-array>
-    <string-array name="pref_mode_values">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="pref_title_pmode">練習モード</string>
+    <string name="pref_summary_pmode">ボタンを１つにします</string>
+    <string name="pref_pmode_default">false</string>
 
     <string name="pref_title_speed">読み上げる速さ</string>
     <string name="pref_speed_default">1</string>

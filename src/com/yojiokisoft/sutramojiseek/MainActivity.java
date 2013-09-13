@@ -17,7 +17,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +49,7 @@ public class MainActivity extends Activity {
 		mSutraDao.seek(0);
 
 		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
-		if (SettingDao.getInstance().getMode().equals(MyConst.PK_MODE_RENSYU)) {
+		if (SettingDao.getInstance().getPMode()) {
 			mMokugyo.setVisibility(View.VISIBLE);
 			Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
 			mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);

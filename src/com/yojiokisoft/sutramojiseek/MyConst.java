@@ -20,13 +20,7 @@ package com.yojiokisoft.sutramojiseek;
  */
 public class MyConst {
 	/** 設定キー：モード */
-	public static final String PK_MODE = "mode";
-
-	/** 設定キー：モード（練習モード） */
-	public static final String PK_MODE_RENSYU = "1";
-
-	/** 設定キー：モード（一般モード） */
-	public static final String PK_MODE_NORMAL = "2";
+	public static final String PK_PMODE = "pmode";
 
 	/** 設定キー：スピード */
 	public static final String PK_SPEED = "speed";
@@ -36,10 +30,10 @@ public class MyConst {
 
 	/** 設定キー：スピード（遅い） */
 	public static final String PK_SPEED_SLOW = "2";
-	
+
 	/** 設定キー：スピード（普通） */
 	public static final String PK_SPEED_NORMAL = "3";
-	
+
 	/** 設定キー：スピード（速い） */
 	public static final String PK_SPEED_FAST = "4";
 }

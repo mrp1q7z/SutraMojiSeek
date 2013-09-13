@@ -51,9 +51,10 @@ public class SettingDao {
 	/**
 	 * @return モード
 	 */
-	public String getMode() {
-		String val = mSharedPref.getString(MyConst.PK_MODE,
-				mContext.getString(R.string.pref_mode_default));
+	public boolean getPMode() {
+		String strDef = mContext.getString(R.string.pref_pmode_default);
+		boolean def = (strDef.equals("true")) ? true : false;
+		boolean val = mSharedPref.getBoolean(MyConst.PK_PMODE, def);
 		return val;
 	}
 
