@@ -56,4 +56,13 @@ public class SettingDao {
 				mContext.getString(R.string.pref_mode_default));
 		return val;
 	}
+
+	/**
+	 * @return スピード
+	 */
+	public String getSpeed() {
+		String val = mSharedPref.getString(MyConst.PK_SPEED,
+				mContext.getString(R.string.pref_speed_default));
+		return val;
+	}
 }

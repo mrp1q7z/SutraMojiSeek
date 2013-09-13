@@ -1,9 +1,23 @@
 package com.yojiokisoft.sutramojiseek;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +34,10 @@ public class MainActivity extends Activity {
 	private Button[][] mButton;
 	private SutraDao mSutraDao;
 	private int mCurrentLine;
+	private Handler mHandler = new Handler();
+	private long mMoveTime = 0;
+	private ArrayList<Integer> mInterval = new ArrayList<Integer>();
+	private ArrayList<Integer> mIntervalKeisoku = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +107,7 @@ public class MainActivity extends Activity {
 		}
 
 		setCurrentLineBg();
+		readInterval();
 	}
 
 	/**
@@ -107,6 +126,54 @@ public class MainActivity extends Activity {
 		return false;
 	}
 
+	/**
+	 * 終了処理
+	 */
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+		String filePath = Environment.getExternalStorageDirectory()
+				+ "/sutra-interval.txt";
+		File file = new File(filePath);
+		file.getParentFile().mkdir();
+
+		FileOutputStream fos;
+		try {
+			fos = new FileOutputStream(file);
+			OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+			BufferedWriter bw = new BufferedWriter(osw);
+			for (int time : mIntervalKeisoku) {
+				String str = "" + time + "\n";
+				bw.write(str);
+			}
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		mHandler.removeCallbacks(mRhythmRunnable);
+		// mSound.release();
+	}
+
+	private void readInterval() {
+		AssetManager assetManager = getResources().getAssets();
+		InputStream is;
+		String line = "";
+		try {
+			is = assetManager.open("interval.txt");
+			InputStreamReader input = new InputStreamReader(is);
+			BufferedReader buffreader = new BufferedReader(input);
+			while ((line = buffreader.readLine()) != null) {
+				mInterval.add(Integer.parseInt(line));
+			}
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void printSutra(int lineNumber) {
 		int max = mButton[0].length;
 		if (mSutraDao.eof()) {
@@ -121,7 +188,8 @@ public class MainActivity extends Activity {
 		String[] dummy = mSutraDao.randomRead(sutra, max - 2);
 
 		mButton[lineNumber][0].setText(sutra);
-		mButton[lineNumber][0].setTag(mSutraDao.eof());
+		mButton[lineNumber][0].setTag(mSutraDao.eof() ? -1 : mSutraDao
+				.getCurrentPos() - 1);
 		((MyButton) mButton[lineNumber][0]).setKana(mSutraDao.getKana());
 		int cnt = 0;
 		for (int i = 1; i < max; i++) {
@@ -185,16 +253,7 @@ public class MainActivity extends Activity {
 			}
 
 			if (lineNumber == mCurrentLine) {
-				boolean eof = (Boolean) mButton[mCurrentLine][0].getTag();
-				if (eof) {
-					showToast("おわり");
-				}
-				printSutra(mCurrentLine);
-				mCurrentLine++;
-				if (mCurrentLine >= mTableRow.length) {
-					mCurrentLine = 0;
-				}
-				setCurrentLineBg();
+				nextMoji();
 			}
 		}
 	};
@@ -215,16 +274,49 @@ public class MainActivity extends Activity {
 	private View.OnClickListener mOnMokugyoButtonClicked = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			boolean eof = (Boolean) mButton[mCurrentLine][0].getTag();
-			if (eof) {
-				showToast("おわり");
-			}
-			printSutra(mCurrentLine);
-			mCurrentLine++;
-			if (mCurrentLine >= mTableRow.length) {
-				mCurrentLine = 0;
-			}
-			setCurrentLineBg();
+			nextMoji();
+		}
+	};
+
+	private void nextMoji() {
+long startTime = System.currentTimeMillis();
+int time = (int) (startTime - mMoveTime);
+mIntervalKeisoku.add(time);
+		mMoveTime = System.currentTimeMillis();
+		int index = (Integer) mButton[mCurrentLine][0].getTag();
+		if (index == -1) {
+			showToast("おわり");
+			return;
+		}
+		printSutra(mCurrentLine);
+		mCurrentLine++;
+		if (mCurrentLine >= mTableRow.length) {
+			mCurrentLine = 0;
+		}
+		setCurrentLineBg();
+
+		long interval;
+		String speed = SettingDao.getInstance().getSpeed();
+		if (MyConst.PK_SPEED_SLOW.equals(speed)) {
+			interval = mInterval.get(index + 1) * 3;
+		} else if (MyConst.PK_SPEED_NORMAL.equals(speed)) {
+			interval = mInterval.get(index + 1) * 2;
+		} else if (MyConst.PK_SPEED_FAST.equals(speed)) {
+			interval = mInterval.get(index + 1);
+		} else {
+			interval = 0;
+		}
+		if (interval != 0) {
+			interval -= (System.currentTimeMillis() - mMoveTime);
+			mHandler.removeCallbacks(mRhythmRunnable);
+			mHandler.postDelayed(mRhythmRunnable, interval);
+		}
+	}
+
+	private final Runnable mRhythmRunnable = new Runnable() {
+		@Override
+		public void run() {
+			nextMoji();
 		}
 	};
 }

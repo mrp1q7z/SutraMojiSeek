@@ -30,4 +30,16 @@ public class MyConst {
 
 	/** 設定キー：スピード */
 	public static final String PK_SPEED = "speed";
+
+	/** 設定キー：スピード（自分で） */
+	public static final String PK_SPEED_MY_PACE = "1";
+
+	/** 設定キー：スピード（遅い） */
+	public static final String PK_SPEED_SLOW = "2";
+	
+	/** 設定キー：スピード（普通） */
+	public static final String PK_SPEED_NORMAL = "3";
+	
+	/** 設定キー：スピード（速い） */
+	public static final String PK_SPEED_FAST = "4";
 }
