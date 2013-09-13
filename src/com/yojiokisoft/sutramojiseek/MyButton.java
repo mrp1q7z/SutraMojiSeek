@@ -38,7 +38,7 @@ public class MyButton extends Button {
 
 		int len = mKana.length();
 		int x = width - textSize - MyResource.dpi2Px(2);
-		int y = ((height - (textSize * len)) / 2) + textSize / 2;
+		int y = ((height - (textSize * len)) / 2) + textSize;
 		for (int i = 0; i < len; i++) {
 			String moji = String.valueOf(mKana.charAt(i));
 			canvas.drawText(moji, x, y, mPaint);
