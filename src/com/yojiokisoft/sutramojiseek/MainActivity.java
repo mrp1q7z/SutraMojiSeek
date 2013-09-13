@@ -65,9 +65,9 @@ public class MainActivity extends Activity {
 		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
 		if (SettingDao.getInstance().getPMode()) {
 			mMokugyo.setVisibility(View.VISIBLE);
-			Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
-			mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
 		}
+		Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
+		mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
 
 		mButton = new Button[5][5];
 		mButton[0][0] = (Button) findViewById(R.id.button_1a);
@@ -140,6 +140,36 @@ public class MainActivity extends Activity {
 	}
 
 	/**
+	 * 前面に表示された
+	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		String newSoundName = SettingDao.getInstance().getRhythmSound();
+		if (!mCurrentSoundName.equals(newSoundName)) {
+			if (mSoundId != 0) {
+				mSound.unload(mSoundId);
+			}
+
+			mCurrentSoundName = newSoundName;
+			int resId = MyResource
+					.getResourceIdByName(mCurrentSoundName, "raw");
+			if (resId == 0) {
+				mSoundId = 0;
+			} else {
+				mSoundId = mSound.load(getApplicationContext(), resId, 0);
+			}
+		}
+
+		if (SettingDao.getInstance().getPMode()) {
+			mMokugyo.setVisibility(View.VISIBLE);
+		} else {
+			mMokugyo.setVisibility(View.GONE);
+		}
+	}
+
+	/**
 	 * 終了処理
 	 */
 	@Override
@@ -167,7 +197,7 @@ public class MainActivity extends Activity {
 		}
 
 		mHandler.removeCallbacks(mRhythmRunnable);
-		// mSound.release();
+		mSound.release();
 	}
 
 	private void readInterval() {

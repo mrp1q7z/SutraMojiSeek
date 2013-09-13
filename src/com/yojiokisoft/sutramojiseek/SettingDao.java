@@ -66,8 +66,15 @@ public class SettingDao {
 				mContext.getString(R.string.pref_speed_default));
 		return val;
 	}
-	
+
 	public String getRhythmSound() {
-		return "mp_poku";
+		String val = mSharedPref.getString(MyConst.PK_RHYTHM_SOUND,
+				mContext.getString(R.string.pref_rhythm_sound_default));
+		return val;
+	}
+
+	public boolean setRhythmSound(String resName) {
+		return mSharedPref.edit().putString(MyConst.PK_RHYTHM_SOUND, resName)
+				.commit();
 	}
 }

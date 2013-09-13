@@ -34,6 +34,10 @@
             android:name="com.yojiokisoft.sutramojiseek.SettingsActivity"
             android:label="@string/action_settings" >
         </activity>
+        <activity
+            android:name="com.yojiokisoft.sutramojiseek.SoundActivity"
+            android:label="@string/pref_title_rhythm_sound" >
+        </activity>
     </application>
 
 </manifest>

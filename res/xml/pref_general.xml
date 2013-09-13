@@ -20,4 +20,8 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_speed" />
 
+    <PreferenceScreen
+        android:key="rhythm_sound"
+        android:title="@string/pref_title_rhythm_sound" />
+
 </PreferenceScreen>

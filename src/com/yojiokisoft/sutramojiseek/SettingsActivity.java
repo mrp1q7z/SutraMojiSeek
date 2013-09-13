@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -15,6 +16,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 
@@ -65,6 +67,11 @@ public class SettingsActivity extends PreferenceActivity {
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
 		bindPreferenceSummaryToValue(findPreference(MyConst.PK_SPEED));
+
+		// リズム音をクリックしたときアクティビティを開くようにする
+		PreferenceScreen prefScreen = (PreferenceScreen) findPreference(MyConst.PK_RHYTHM_SOUND);
+		Intent intent = new Intent(this, SoundActivity.class);
+		prefScreen.setIntent(intent);
 	}
 
 	/** {@inheritDoc} */
@@ -194,6 +201,13 @@ public class SettingsActivity extends PreferenceActivity {
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
 			bindPreferenceSummaryToValue(findPreference(MyConst.PK_SPEED));
+
+			// リズム音をクリックしたときアクティビティを開くようにする
+			PreferenceScreen prefScreen = (PreferenceScreen) findPreference(MyConst.PK_RHYTHM_SOUND);
+			Intent intent = new Intent(App.getInstance().getAppContext(),
+					SoundActivity.class);
+			prefScreen.setIntent(intent);
+
 		}
 	}
 }
