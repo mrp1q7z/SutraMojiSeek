@@ -63,14 +63,11 @@ public class MainActivity extends Activity {
 		mSutraDao = SutraDao.getInstance();
 		mSutraDao.seek(0);
 
+		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
 		if (SettingDao.getInstance().getPMode()) {
 			mMokugyo.setVisibility(View.VISIBLE);
 		}
-		Button mokugyoButton = (Button) findViewById(R.id.mokugyo_button);
-		mokugyoButton.setOnClickListener(mOnMokugyoButtonClicked);
-
-		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 
 		mButton = new Button[5][5];
 		mButton[0][0] = (Button) findViewById(R.id.button_1a);
@@ -313,11 +310,8 @@ public class MainActivity extends Activity {
 		mScoreContainer.setVisibility(View.VISIBLE);
 	}
 
-	private View.OnClickListener mOnMokugyoButtonClicked = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			nextMoji();
-		}
+	public void onMokugyoButtonClicked(View view) {
+		nextMoji();
 	};
 
 	public void onReplayButtonClicked(View view) {
