@@ -208,6 +208,7 @@ public class MainActivity extends Activity {
 
 		mHandler.removeCallbacks(mRhythmRunnable);
 		mSound.release();
+		MyResource.wakeLockRelease();
 	}
 
 	private void readInterval() {
@@ -317,6 +318,7 @@ public class MainActivity extends Activity {
 				if (mState.getState() == State.S_INIT) {
 					nextMoji(((Button) v).getText().toString());
 					mState.setState(State.S_PLAY);
+					MyResource.wakeLockAcquire();
 				} else if (mState.getState() == State.S_PLAY) {
 					nextMoji(((Button) v).getText().toString());
 				}
@@ -389,6 +391,7 @@ public class MainActivity extends Activity {
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
 		if (index == -1) {
 			showScore();
+			MyResource.wakeLockRelease();
 			return;
 		}
 		printSutra(mCurrentLine);

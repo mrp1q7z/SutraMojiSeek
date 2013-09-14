@@ -15,6 +15,10 @@
 
 package com.yojiokisoft.sutramojiseek;
 
+import android.content.Context;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+
 /**
  * リソース関連のユーティリティ
  */
@@ -51,5 +55,23 @@ public class MyResource {
 		App app = App.getInstance();
 		String packageName = app.getPackageName();
 		return app.getResources().getIdentifier(name, type, packageName);
+	}
+
+	private static WakeLock mWakeLock = null;
+
+	public static void wakeLockAcquire() {
+		wakeLockRelease();
+		PowerManager pm = (PowerManager) App.getInstance().getSystemService(
+				Context.POWER_SERVICE);
+		mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "My tag");
+		mWakeLock.acquire();
+	}
+
+	public static void wakeLockRelease() {
+		if (mWakeLock == null) {
+			return;
+		}
+		mWakeLock.release();
+		mWakeLock = null;
 	}
 }
