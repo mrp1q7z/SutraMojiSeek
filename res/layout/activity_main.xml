@@ -275,6 +275,40 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/pause_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pauseing"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/resum_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onResumButtonClicked"
+                android:text="再開" />
+
+            <Button
+                android:id="@+id/replay_button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="最初に戻る" />
+
+            <Button
+                android:id="@+id/exit_button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exit" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/score_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

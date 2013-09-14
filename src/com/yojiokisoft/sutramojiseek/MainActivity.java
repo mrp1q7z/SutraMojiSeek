@@ -27,18 +27,19 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private SoundPool mSound;
 	private int mSoundId;
 	private String mCurrentSoundName;
 	private LinearLayout mMokugyo;
+	private LinearLayout mPauseContainer;
 	private LinearLayout mScoreContainer;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
 	private SutraDao mSutraDao;
 	private int mCurrentLine;
+	private State mState = new State();
 	private Handler mHandler = new Handler();
 	private long mMoveTime = 0;
 	private ArrayList<Integer> mInterval = new ArrayList<Integer>();
@@ -50,6 +51,7 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
+		mState.setState(State.S_INIT);
 		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 		mCurrentSoundName = SettingDao.getInstance().getRhythmSound();
 		int resId = MyResource.getResourceIdByName(mCurrentSoundName, "raw");
@@ -63,6 +65,7 @@ public class MainActivity extends Activity {
 		mSutraDao = SutraDao.getInstance();
 		mSutraDao.seek(0);
 
+		mPauseContainer = (LinearLayout) findViewById(R.id.pause_container);
 		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
 		if (SettingDao.getInstance().getPMode()) {
@@ -255,10 +258,17 @@ public class MainActivity extends Activity {
 	private View.OnClickListener mOnButtonClicked = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-
+			boolean pause = false;
 			int lineNumber = -1;
 
 			switch (v.getId()) {
+			case R.id.button_1a:
+			case R.id.button_2a:
+			case R.id.button_3a:
+			case R.id.button_4a:
+			case R.id.button_5a:
+				pause = true;
+				break;
 			case R.id.button_1b:
 			case R.id.button_1c:
 			case R.id.button_1d:
@@ -291,8 +301,18 @@ public class MainActivity extends Activity {
 				break;
 			}
 
-			if (lineNumber == mCurrentLine) {
-				nextMoji();
+			if (pause) {
+				if (mState.getState() == State.S_PLAY) {
+					mPauseContainer.setVisibility(View.VISIBLE);
+					mState.setState(State.S_PAUSE);
+				}
+			} else if (lineNumber == mCurrentLine) {
+				if (mState.getState() == State.S_INIT) {
+					nextMoji();
+					mState.setState(State.S_PLAY);
+				} else if (mState.getState() == State.S_PLAY) {
+					nextMoji();
+				}
 			}
 		}
 	};
@@ -313,6 +333,14 @@ public class MainActivity extends Activity {
 	public void onMokugyoButtonClicked(View view) {
 		nextMoji();
 	};
+
+	public void onResumButtonClicked(View view) {
+		int index = (Integer) mButton[mCurrentLine][0].getTag();
+		setTimer(index, 0);
+
+		mPauseContainer.setVisibility(View.INVISIBLE);
+		mState.setState(State.S_PLAY);
+	}
 
 	public void onReplayButtonClicked(View view) {
 		mScoreContainer.setVisibility(View.INVISIBLE);
@@ -353,6 +381,11 @@ public class MainActivity extends Activity {
 		}
 		setCurrentLineBg();
 
+		long procTime = (System.currentTimeMillis() - mMoveTime);
+		setTimer(index, procTime);
+	}
+
+	private void setTimer(int index, long procTime) {
 		long interval;
 		String speed = SettingDao.getInstance().getSpeed();
 		if (MyConst.PK_SPEED_SLOW.equals(speed)) {
@@ -365,7 +398,9 @@ public class MainActivity extends Activity {
 			interval = 0;
 		}
 		if (interval != 0) {
-			interval -= (System.currentTimeMillis() - mMoveTime);
+			if (procTime != 0) {
+				interval -= procTime;
+			}
 			mHandler.removeCallbacks(mRhythmRunnable);
 			mHandler.postDelayed(mRhythmRunnable, interval);
 		}
@@ -374,6 +409,9 @@ public class MainActivity extends Activity {
 	private final Runnable mRhythmRunnable = new Runnable() {
 		@Override
 		public void run() {
+			if (mState.getState() != State.S_PLAY) {
+				return;
+			}
 			nextMoji();
 		}
 	};
