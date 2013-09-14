@@ -116,4 +116,8 @@ public class SutraDao {
 		}
 		return mKana[index];
 	}
+
+	public int getLength() {
+		return mSutra.length();
+	}
 }

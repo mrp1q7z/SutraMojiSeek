@@ -312,15 +312,21 @@
             android:id="@+id/score_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:visibility="gone" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="お疲れ様でした"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Score:1234"
-                android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
             <Button

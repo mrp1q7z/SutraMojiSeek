@@ -27,14 +27,16 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	private SoundPool mSound;
 	private int mSoundId;
 	private String mCurrentSoundName;
-	private LinearLayout mMokugyo;
+	private LinearLayout mMokugyoContainer;
 	private LinearLayout mPauseContainer;
 	private LinearLayout mScoreContainer;
+	private TextView mScore;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
 	private SutraDao mSutraDao;
@@ -44,6 +46,8 @@ public class MainActivity extends Activity {
 	private long mMoveTime = 0;
 	private ArrayList<Integer> mInterval = new ArrayList<Integer>();
 	private ArrayList<Integer> mIntervalKeisoku = new ArrayList<Integer>();
+	private int mOkCnt;
+	private int mNgCnt;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
+		mOkCnt = 0;
+		mNgCnt = 0;
 		mState.setState(State.S_INIT);
 		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 		mCurrentSoundName = SettingDao.getInstance().getRhythmSound();
@@ -67,9 +73,10 @@ public class MainActivity extends Activity {
 
 		mPauseContainer = (LinearLayout) findViewById(R.id.pause_container);
 		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
-		mMokugyo = (LinearLayout) findViewById(R.id.mokugyo_container);
+		mScore = (TextView) findViewById(R.id.score);
+		mMokugyoContainer = (LinearLayout) findViewById(R.id.mokugyo_container);
 		if (SettingDao.getInstance().getPMode()) {
-			mMokugyo.setVisibility(View.VISIBLE);
+			mMokugyoContainer.setVisibility(View.VISIBLE);
 		}
 
 		mButton = new Button[5][5];
@@ -166,9 +173,9 @@ public class MainActivity extends Activity {
 		}
 
 		if (SettingDao.getInstance().getPMode()) {
-			mMokugyo.setVisibility(View.VISIBLE);
+			mMokugyoContainer.setVisibility(View.VISIBLE);
 		} else {
-			mMokugyo.setVisibility(View.GONE);
+			mMokugyoContainer.setVisibility(View.GONE);
 		}
 	}
 
@@ -308,10 +315,10 @@ public class MainActivity extends Activity {
 				}
 			} else if (lineNumber == mCurrentLine) {
 				if (mState.getState() == State.S_INIT) {
-					nextMoji();
+					nextMoji(((Button) v).getText().toString());
 					mState.setState(State.S_PLAY);
 				} else if (mState.getState() == State.S_PLAY) {
-					nextMoji();
+					nextMoji(((Button) v).getText().toString());
 				}
 			}
 		}
@@ -327,11 +334,14 @@ public class MainActivity extends Activity {
 	}
 
 	private void showScore() {
+		String msg = "OK=" + mOkCnt + ",NG=" + mNgCnt + ",Pass="
+				+ (mSutraDao.getLength() - mOkCnt - mNgCnt);
+		mScore.setText(msg);
 		mScoreContainer.setVisibility(View.VISIBLE);
 	}
 
 	public void onMokugyoButtonClicked(View view) {
-		nextMoji();
+		nextMoji(null);
 	};
 
 	public void onResumButtonClicked(View view) {
@@ -349,24 +359,31 @@ public class MainActivity extends Activity {
 		mSutraDao.seek(0);
 
 		for (int i = 0; i < 5; i++) {
+			mTableRow[i].setBackgroundResource(R.color.gray_scale);
 			printSutra(i);
 		}
 
 		setCurrentLineBg();
 	}
 
-	private void nextMoji() {
-		// debug >>>
+	private void nextMoji(String clickMoji) {
 		long startTime = System.currentTimeMillis();
+		// debug >>>
 		int time = (int) (startTime - mMoveTime);
 		mIntervalKeisoku.add(time);
 		// debug <<<
 
-		mMoveTime = System.currentTimeMillis();
-
 		if (mSoundId != 0) {
 			mSound.stop(mSoundId);
 			mSound.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
+		}
+
+		if (clickMoji != null) {
+			if (clickMoji.equals(mButton[mCurrentLine][0].getText())) {
+				mOkCnt++;
+			} else {
+				mNgCnt++;
+			}
 		}
 
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
@@ -381,8 +398,10 @@ public class MainActivity extends Activity {
 		}
 		setCurrentLineBg();
 
-		long procTime = (System.currentTimeMillis() - mMoveTime);
+		long procTime = (System.currentTimeMillis() - startTime);
 		setTimer(index, procTime);
+
+		mMoveTime = System.currentTimeMillis();
 	}
 
 	private void setTimer(int index, long procTime) {
@@ -412,7 +431,7 @@ public class MainActivity extends Activity {
 			if (mState.getState() != State.S_PLAY) {
 				return;
 			}
-			nextMoji();
+			nextMoji(null);
 		}
 	};
 }
