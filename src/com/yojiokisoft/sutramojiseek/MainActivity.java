@@ -19,6 +19,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,13 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
+public class MainActivity extends Activity implements AdListener {
+	private AdView mAdViewBanner;
 	private SoundPool mSound;
 	private int mSoundId;
 	private String mCurrentSoundName;
@@ -128,6 +135,11 @@ public class MainActivity extends Activity {
 
 		setCurrentLineBg();
 		readInterval();
+
+		AdRequest adRequest = AdCatalogUtils.createAdRequest();
+		mAdViewBanner = (AdView) findViewById(R.id.adViewBanner);
+		mAdViewBanner.setAdListener(this);
+		mAdViewBanner.loadAd(adRequest);
 	}
 
 	/**
@@ -205,6 +217,9 @@ public class MainActivity extends Activity {
 
 		mHandler.removeCallbacks(mRhythmRunnable);
 		mSound.release();
+		if (mAdViewBanner != null) {
+			mAdViewBanner.destroy();
+		}
 		MyResource.wakeLockRelease();
 	}
 
@@ -221,6 +236,31 @@ public class MainActivity extends Activity {
 				return super.onKeyDown(keyCode, event);
 			}
 		}
+	}
+
+	@Override
+	public void onReceiveAd(Ad ad) {
+		Log.d("Banners_class", "I received an ad");
+	}
+
+	@Override
+	public void onFailedToReceiveAd(Ad ad, AdRequest.ErrorCode error) {
+		Log.d("Banners_class", "I failed to receive an ad");
+	}
+
+	@Override
+	public void onPresentScreen(Ad ad) {
+		Log.d("Banners_class", "Presenting screen");
+	}
+
+	@Override
+	public void onDismissScreen(Ad ad) {
+		Log.d("Banners_class", "Dismissing screen");
+	}
+
+	@Override
+	public void onLeaveApplication(Ad ad) {
+		Log.d("Banners_class", "Leaving application");
 	}
 
 	private void readInterval() {
