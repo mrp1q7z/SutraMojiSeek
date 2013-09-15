@@ -19,6 +19,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -207,6 +208,21 @@ public class MainActivity extends Activity {
 		MyResource.wakeLockRelease();
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode != KeyEvent.KEYCODE_BACK) {
+			return super.onKeyDown(keyCode, event);
+		} else {
+			// ポーズ中の戻るキーは画面を閉じずにポーズの解除を行う
+			if (mState.getState() == State.S_PAUSE) {
+				onResumButtonClicked(null);
+				return false;
+			} else {
+				return super.onKeyDown(keyCode, event);
+			}
+		}
+	}
+
 	private void readInterval() {
 		AssetManager assetManager = getResources().getAssets();
 		InputStream is;
@@ -345,12 +361,12 @@ public class MainActivity extends Activity {
 
 	public void onResumButtonClicked(View view) {
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
-		setTimer(index, 0);
+		setTimer(index - 1, 0);
 
 		mPauseContainer.setVisibility(View.INVISIBLE);
 		mState.setState(State.S_PLAY);
 	}
-	
+
 	public void clearScore() {
 		mOkCnt = 0;
 		mNgCnt = 0;
