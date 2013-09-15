@@ -282,29 +282,40 @@
             android:orientation="vertical"
             android:visibility="gone" >
 
-            <TextView
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pauseing"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/btn_pause" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:text="Paused"
                 android:textSize="20sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_resume"
                 android:onClick="onResumButtonClicked"
                 android:text="再開" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_replay"
                 android:onClick="onReplayButtonClicked"
                 android:text="最初に戻る" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_exit"
                 android:onClick="onExitButtonClicked"
-                android:text="Exit" />
+                android:text="ゲームの終了" />
         </LinearLayout>
 
         <LinearLayout
