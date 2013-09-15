@@ -326,9 +326,16 @@
             android:orientation="vertical"
             android:visibility="gone" >
 
-            <TextView
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/btn_score" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="お疲れ様でした"
                 android:textSize="20sp" />
 
@@ -336,25 +343,30 @@
                 android:id="@+id/score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Score:1234"
-                android:textSize="20sp" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="top|center"
+                android:textSize="16sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_replay"
                 android:onClick="onReplayButtonClicked"
-                android:text="Replay" />
+                android:text="リプレイ" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_exit"
                 android:onClick="onExitButtonClicked"
-                android:text="Exit" />
+                android:text="ゲームの終了" />
 
             <com.google.ads.AdView
                 android:id="@+id/adViewBanner"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginTop="10sp"
                 ads:adSize="BANNER"
                 ads:adUnitId="@string/admob_id" />
         </LinearLayout>

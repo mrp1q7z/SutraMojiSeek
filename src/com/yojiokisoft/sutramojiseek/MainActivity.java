@@ -388,7 +388,7 @@ public class MainActivity extends Activity implements AdListener {
 	}
 
 	private void showScore() {
-		String msg = "OK=" + mOkCnt + ",NG=" + mNgCnt + ",Pass="
+		String msg = "○ : " + mOkCnt + "\n× : " + mNgCnt + "\n◇ : "
 				+ (mSutraDao.getLength() - mOkCnt - mNgCnt);
 		mScore.setText(msg);
 		mScoreContainer.setVisibility(View.VISIBLE);
