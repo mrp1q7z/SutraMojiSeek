@@ -336,6 +336,7 @@ public class MainActivity extends Activity {
 				+ (mSutraDao.getLength() - mOkCnt - mNgCnt);
 		mScore.setText(msg);
 		mScoreContainer.setVisibility(View.VISIBLE);
+		mState.setState(State.S_SCORE);
 	}
 
 	public void onMokugyoButtonClicked(View view) {
