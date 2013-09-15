@@ -289,22 +289,21 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/resum_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onResumButtonClicked"
                 android:text="再開" />
 
             <Button
-                android:id="@+id/replay_button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onReplayButtonClicked"
                 android:text="最初に戻る" />
 
             <Button
-                android:id="@+id/exit_button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onExitButtonClicked"
                 android:text="Exit" />
         </LinearLayout>
 
@@ -330,16 +329,15 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/replay_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onReplayButtonClicked"
                 android:text="Replay" />
 
             <Button
-                android:id="@+id/exit_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onExitButtonClicked"
                 android:text="Exit" />
 
             <com.google.ads.AdView

@@ -55,9 +55,6 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
-		mOkCnt = 0;
-		mNgCnt = 0;
-		mState.setState(State.S_INIT);
 		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 		mCurrentSoundName = SettingDao.getInstance().getRhythmSound();
 		int resId = MyResource.getResourceIdByName(mCurrentSoundName, "raw");
@@ -67,9 +64,8 @@ public class MainActivity extends Activity {
 			mSoundId = mSound.load(getApplicationContext(), resId, 0);
 		}
 
-		mCurrentLine = 0;
 		mSutraDao = SutraDao.getInstance();
-		mSutraDao.seek(0);
+		clearScore();
 
 		mPauseContainer = (LinearLayout) findViewById(R.id.pause_container);
 		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
@@ -353,12 +349,20 @@ public class MainActivity extends Activity {
 		mPauseContainer.setVisibility(View.INVISIBLE);
 		mState.setState(State.S_PLAY);
 	}
+	
+	public void clearScore() {
+		mOkCnt = 0;
+		mNgCnt = 0;
+		mCurrentLine = 0;
+		mState.setState(State.S_INIT);
+		mSutraDao.seek(0);
+	}
 
 	public void onReplayButtonClicked(View view) {
+		mPauseContainer.setVisibility(View.INVISIBLE);
 		mScoreContainer.setVisibility(View.INVISIBLE);
 
-		mCurrentLine = 0;
-		mSutraDao.seek(0);
+		clearScore();
 
 		for (int i = 0; i < 5; i++) {
 			mTableRow[i].setBackgroundResource(R.color.gray_scale);
@@ -366,6 +370,10 @@ public class MainActivity extends Activity {
 		}
 
 		setCurrentLineBg();
+	}
+
+	public void onExitButtonClicked(View view) {
+		finish();
 	}
 
 	private void nextMoji(String clickMoji) {
