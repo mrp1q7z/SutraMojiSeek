@@ -10,6 +10,12 @@ import android.widget.Button;
 public class MyButton extends Button {
 	private Paint mPaint;
 	private String mKana;
+	private int mKanaLen;
+	private int mTextSize;
+	private int mKanaX;
+	private int mKanaY;
+	private int mHeight;
+	private int mWidth;
 
 	public MyButton(Context context) {
 		super(context);
@@ -28,21 +34,11 @@ public class MyButton extends Button {
 			return;
 		}
 
-		int textSize = MyResource.dpi2Px(10);
-		int height = (canvas.getHeight() - MyResource.dpi2Px(50)) / 5;
-		int width = canvas.getWidth() / 5;
-
-		mPaint.setAntiAlias(true);
-		mPaint.setColor(Color.BLUE);
-		mPaint.setTextSize(textSize);
-
-		int len = mKana.length();
-		int x = width - textSize - MyResource.dpi2Px(2);
-		int y = ((height - (textSize * len)) / 2) + textSize;
-		for (int i = 0; i < len; i++) {
+		int y = mKanaY;
+		for (int i = 0; i < mKanaLen; i++) {
 			String moji = String.valueOf(mKana.charAt(i));
-			canvas.drawText(moji, x, y, mPaint);
-			y += textSize;
+			canvas.drawText(moji, mKanaX, y, mPaint);
+			y += mTextSize;
 		}
 	}
 
@@ -54,5 +50,29 @@ public class MyButton extends Button {
 
 	public void setKana(String kana) {
 		mKana = kana;
+		mTextSize = MyResource.dpi2Px(10);
+		mKanaLen = mKana.length();
+		mPaint.setAntiAlias(true);
+		mPaint.setColor(Color.BLUE);
+		mPaint.setTextSize(mTextSize);
+		setXY();
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+
+		mHeight = getHeight();
+		mWidth = getWidth();
+		if (mWidth >= 240) {
+			mHeight = (mHeight - MyResource.dpi2Px(50)) / 5;
+			mWidth /= 5;
+		}
+		setXY();
+	}
+
+	private void setXY() {
+		mKanaX = mWidth - mTextSize - MyResource.dpi2Px(2);
+		mKanaY = ((mHeight - (mTextSize * mKanaLen)) / 2) + mTextSize;
 	}
 }

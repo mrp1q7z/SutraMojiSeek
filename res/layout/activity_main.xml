@@ -343,8 +343,8 @@
                 android:id="@+id/score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:gravity="top|center"
                 android:textSize="16sp" />
 
@@ -366,6 +366,7 @@
                 android:id="@+id/adViewBanner"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10sp"
                 ads:adSize="BANNER"
                 ads:adUnitId="@string/admob_id" />
