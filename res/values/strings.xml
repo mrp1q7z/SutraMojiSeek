@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">般若心経もじ探し</string>
+    <string name="app_name">般若心経文字探し</string>
     <string name="admob_id">ca-app-pub-4623298212622664/3911393437</string>
     <string name="action_settings">設定</string>
     <string name="ok">OK</string>
