@@ -269,9 +269,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/button_bg3"
-                android:onClick="onMokugyoButtonClicked"
-                android:text="POKU" />
+                android:background="@drawable/btn_poku"
+                android:onClick="onMokugyoButtonClicked" />
         </LinearLayout>
 
         <LinearLayout
