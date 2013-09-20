@@ -6,6 +6,12 @@
     <string name="action_settings">設定</string>
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
+    <string name="pause">Paused</string>
+    <string name="resume">再開</string>
+    <string name="goto_top">最初から始める</string>
+    <string name="replay">リプレイ</string>
+    <string name="exit">ゲームの終了</string>
+    <string name="good_works">お疲れ様でした</string>
 
     <string name="sound_none">none</string>
     <string name="sound_none_note">soundless</string>

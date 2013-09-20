@@ -292,7 +292,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="30dp"
-                android:text="Paused"
+                android:text="@string/pause"
                 android:textSize="20sp" />
 
             <Button
@@ -300,21 +300,21 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/btn_resume"
                 android:onClick="onResumButtonClicked"
-                android:text="再開" />
+                android:text="@string/resume" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/btn_replay"
                 android:onClick="onReplayButtonClicked"
-                android:text="最初に戻る" />
+                android:text="@string/goto_top" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/btn_exit"
                 android:onClick="onExitButtonClicked"
-                android:text="ゲームの終了" />
+                android:text="@string/exit" />
         </LinearLayout>
 
         <LinearLayout
@@ -335,7 +335,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="お疲れ様でした"
+                android:text="@string/good_works"
                 android:textSize="20sp" />
 
             <TextView
@@ -352,14 +352,14 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/btn_replay"
                 android:onClick="onReplayButtonClicked"
-                android:text="リプレイ" />
+                android:text="@string/replay" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/btn_exit"
                 android:onClick="onExitButtonClicked"
-                android:text="ゲームの終了" />
+                android:text="@string/exit" />
 
             <com.google.ads.AdView
                 android:id="@+id/adViewBanner"
