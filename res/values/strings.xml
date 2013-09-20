@@ -12,6 +12,7 @@
     <string name="replay">リプレイ</string>
     <string name="exit">ゲームの終了</string>
     <string name="good_works">お疲れ様でした</string>
+    <string name="return_opening">オープニング画面に戻る</string>
 
     <string name="sound_none">none</string>
     <string name="sound_none_note">soundless</string>

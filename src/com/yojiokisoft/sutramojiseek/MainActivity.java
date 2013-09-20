@@ -442,6 +442,14 @@ public class MainActivity extends Activity implements AdListener {
 		setCurrentLineBg();
 	}
 
+	public void onReturnOpeningButtonClicked(View view) {
+		Intent intent = new Intent(getApplicationContext(),
+				OpeningActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+		finish();
+	}
+
 	public void onExitButtonClicked(View view) {
 		finish();
 	}
