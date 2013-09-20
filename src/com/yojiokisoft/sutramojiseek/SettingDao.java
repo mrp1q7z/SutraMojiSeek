@@ -49,7 +49,7 @@ public class SettingDao {
 	}
 
 	/**
-	 * @return モード
+	 * @return 練習モード
 	 */
 	public boolean getPMode() {
 		String strDef = mContext.getString(R.string.pref_pmode_default);
@@ -67,12 +67,31 @@ public class SettingDao {
 		return val;
 	}
 
+	/**
+	 * @return ボタン配置
+	 */
+	public String getButtonPosition() {
+		String val = mSharedPref.getString(MyConst.PK_BUTTON_POSITION,
+				mContext.getString(R.string.pref_button_position_default));
+		return val;
+	}
+
+	/**
+	 * @return リズム音
+	 */
 	public String getRhythmSound() {
 		String val = mSharedPref.getString(MyConst.PK_RHYTHM_SOUND,
 				mContext.getString(R.string.pref_rhythm_sound_default));
 		return val;
 	}
 
+	/**
+	 * リズム音のセット
+	 * 
+	 * @param resName
+	 *            リズム音のリソース名
+	 * @return true=正常終了 false=エラー
+	 */
 	public boolean setRhythmSound(String resName) {
 		return mSharedPref.edit().putString(MyConst.PK_RHYTHM_SOUND, resName)
 				.commit();

@@ -20,6 +20,15 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_speed" />
 
+    <ListPreference
+        android:defaultValue="@string/pref_button_position_default"
+        android:entries="@array/pref_button_position_titles"
+        android:entryValues="@array/pref_button_position_values"
+        android:key="button_position"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_button_position" />
+
     <PreferenceScreen
         android:key="rhythm_sound"
         android:title="@string/pref_title_rhythm_sound" />

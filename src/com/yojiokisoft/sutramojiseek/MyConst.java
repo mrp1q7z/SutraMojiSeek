@@ -19,7 +19,7 @@ package com.yojiokisoft.sutramojiseek;
  * 定数クラス.
  */
 public class MyConst {
-	/** 設定キー：モード */
+	/** 設定キー：練習モード */
 	public static final String PK_PMODE = "pmode";
 
 	/** 設定キー：スピード */
@@ -39,4 +39,13 @@ public class MyConst {
 
 	/** 設定キー：リズム音 */
 	public static final String PK_RHYTHM_SOUND = "rhythm_sound";
+
+	/** 設定キー：ボタン配置 */
+	public static final String PK_BUTTON_POSITION = "button_position";
+
+	/** 設定キー：ボタン配置（右） */
+	public static final String PK_BUTTON_POSITIONS_RIGHT = "r";
+
+	/** 設定キー：ボタン配置（左） */
+	public static final String PK_BUTTON_POSITIONS_LEFT = "l";
 }

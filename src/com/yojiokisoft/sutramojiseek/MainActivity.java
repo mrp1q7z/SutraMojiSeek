@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements AdListener {
 	private TextView mScore;
 	private TableRow[] mTableRow;
 	private Button[][] mButton;
+	private SettingDao mSettings;
 	private SutraDao mSutraDao;
 	private int mCurrentLine;
 	private State mState = new State();
@@ -61,10 +62,17 @@ public class MainActivity extends Activity implements AdListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_main);
+
+		mSettings = SettingDao.getInstance();
+		if (mSettings.getButtonPosition().equals(
+				MyConst.PK_BUTTON_POSITIONS_LEFT)) {
+			setContentView(R.layout.activity_main_left);
+		} else {
+			setContentView(R.layout.activity_main);
+		}
 
 		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-		mCurrentSoundName = SettingDao.getInstance().getRhythmSound();
+		mCurrentSoundName = mSettings.getRhythmSound();
 		int resId = MyResource.getResourceIdByName(mCurrentSoundName, "raw");
 		if (resId == 0) {
 			mSoundId = 0;
@@ -79,7 +87,7 @@ public class MainActivity extends Activity implements AdListener {
 		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 		mScore = (TextView) findViewById(R.id.score);
 		mMokugyoContainer = (LinearLayout) findViewById(R.id.mokugyo_container);
-		if (SettingDao.getInstance().getPMode()) {
+		if (mSettings.getPMode()) {
 			mMokugyoContainer.setVisibility(View.VISIBLE);
 		}
 
@@ -165,7 +173,7 @@ public class MainActivity extends Activity implements AdListener {
 	protected void onResume() {
 		super.onResume();
 
-		String newSoundName = SettingDao.getInstance().getRhythmSound();
+		String newSoundName = mSettings.getRhythmSound();
 		if (!mCurrentSoundName.equals(newSoundName)) {
 			if (mSoundId != 0) {
 				mSound.unload(mSoundId);
@@ -181,7 +189,7 @@ public class MainActivity extends Activity implements AdListener {
 			}
 		}
 
-		if (SettingDao.getInstance().getPMode()) {
+		if (mSettings.getPMode()) {
 			mMokugyoContainer.setVisibility(View.VISIBLE);
 		} else {
 			mMokugyoContainer.setVisibility(View.GONE);
@@ -479,7 +487,7 @@ public class MainActivity extends Activity implements AdListener {
 
 	private void setTimer(int index, long procTime) {
 		long interval;
-		String speed = SettingDao.getInstance().getSpeed();
+		String speed = mSettings.getSpeed();
 		if (MyConst.PK_SPEED_SLOW.equals(speed)) {
 			interval = mInterval.get(index + 1) * 3;
 		} else if (MyConst.PK_SPEED_NORMAL.equals(speed)) {

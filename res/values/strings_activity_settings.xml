@@ -23,6 +23,18 @@
         <item>4</item>
     </string-array>
 
+    <string name="pref_title_button_position">ボタン配置</string>
+    <string name="pref_button_position_default">r</string>
+
+    <string-array name="pref_button_position_titles">
+        <item>右（右利き用）</item>
+        <item>左（左利き用）</item>
+    </string-array>
+    <string-array name="pref_button_position_values">
+        <item>r</item>
+        <item>l</item>
+    </string-array>
+
     <string name="pref_title_rhythm_sound">リズム音</string>
     <string name="pref_rhythm_sound_default">mp_taiko</string>
 

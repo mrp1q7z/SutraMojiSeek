@@ -67,6 +67,7 @@ public class SettingsActivity extends PreferenceActivity {
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
 		bindPreferenceSummaryToValue(findPreference(MyConst.PK_SPEED));
+		bindPreferenceSummaryToValue(findPreference(MyConst.PK_BUTTON_POSITION));
 
 		// リズム音をクリックしたときアクティビティを開くようにする
 		PreferenceScreen prefScreen = (PreferenceScreen) findPreference(MyConst.PK_RHYTHM_SOUND);
@@ -201,6 +202,7 @@ public class SettingsActivity extends PreferenceActivity {
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
 			bindPreferenceSummaryToValue(findPreference(MyConst.PK_SPEED));
+			bindPreferenceSummaryToValue(findPreference(MyConst.PK_BUTTON_POSITION));
 
 			// リズム音をクリックしたときアクティビティを開くようにする
 			PreferenceScreen prefScreen = (PreferenceScreen) findPreference(MyConst.PK_RHYTHM_SOUND);

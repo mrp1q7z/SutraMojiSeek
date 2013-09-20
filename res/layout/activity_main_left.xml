@@ -1,0 +1,375 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TableRow
+                android:id="@+id/table_row1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_scale" >
+
+                <Button
+                    android:id="@+id/button_1b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_1c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_1d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_1e"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <com.yojiokisoft.sutramojiseek.MyButton
+                    android:id="@+id/button_1a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg2"
+                    android:textSize="35sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_scale" >
+
+                <Button
+                    android:id="@+id/button_2b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_2c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_2d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_2e"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <com.yojiokisoft.sutramojiseek.MyButton
+                    android:id="@+id/button_2a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg2"
+                    android:textSize="35sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_scale" >
+
+                <Button
+                    android:id="@+id/button_3b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_3c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_3d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_3e"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <com.yojiokisoft.sutramojiseek.MyButton
+                    android:id="@+id/button_3a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg2"
+                    android:textSize="35sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_scale" >
+
+                <Button
+                    android:id="@+id/button_4b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_4c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_4d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_4e"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <com.yojiokisoft.sutramojiseek.MyButton
+                    android:id="@+id/button_4a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg2"
+                    android:textSize="35sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_scale" >
+
+                <Button
+                    android:id="@+id/button_5b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_5c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_5d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/button_5e"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg"
+                    android:textSize="35sp" />
+
+                <com.yojiokisoft.sutramojiseek.MyButton
+                    android:id="@+id/button_5a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg2"
+                    android:textSize="35sp" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/mokugyo_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/mokugyo_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_poku"
+                android:onClick="onMokugyoButtonClicked" />
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pause_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/btn_pause" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:text="Paused"
+                android:textSize="20sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_resume"
+                android:onClick="onResumButtonClicked"
+                android:text="再開" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_replay"
+                android:onClick="onReplayButtonClicked"
+                android:text="最初に戻る" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_exit"
+                android:onClick="onExitButtonClicked"
+                android:text="ゲームの終了" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/score_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/btn_score" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="お疲れ様でした"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="top|center"
+                android:textSize="16sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_replay"
+                android:onClick="onReplayButtonClicked"
+                android:text="リプレイ" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/btn_exit"
+                android:onClick="onExitButtonClicked"
+                android:text="ゲームの終了" />
+
+            <com.google.ads.AdView
+                android:id="@+id/adViewBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10sp"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/admob_id" />
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>
