@@ -28,7 +28,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name="com.yojiokisoft.sutramojiseek.SettingsActivity"
-            android:label="@string/action_settings" >
+            android:label="@string/settings" >
         </activity>
         <activity
             android:name="com.yojiokisoft.sutramojiseek.SoundActivity"

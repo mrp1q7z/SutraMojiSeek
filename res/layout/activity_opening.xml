@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_resume"
         android:onClick="onStartButtonClicked"
-        android:text="開始" />
+        android:text="@string/start" />
 
     <Button
         android:id="@+id/setting_button"
@@ -35,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_setting"
         android:onClick="onSettingButtonClicked"
-        android:text="設定" />
+        android:text="@string/settings" />
 
     <Button
         android:id="@+id/help_button"
@@ -45,7 +45,7 @@
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_help"
         android:onClick="onExitButtonClicked"
-        android:text="遊び方" />
+        android:text="@string/help" />
 
     <Button
         android:id="@+id/score_button"
@@ -55,6 +55,6 @@
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_ranking"
         android:onClick="onExitButtonClicked"
-        android:text="成績" />
+        android:text="@string/ranking" />
 
 </RelativeLayout>

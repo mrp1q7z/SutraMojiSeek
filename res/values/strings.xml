@@ -3,7 +3,7 @@
 
     <string name="app_name">般若心経文字探し</string>
     <string name="admob_id">ca-app-pub-4623298212622664/3911393437</string>
-    <string name="action_settings">設定</string>
+    <string name="settings">設定</string>
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
     <string name="pause">Paused</string>
@@ -13,6 +13,9 @@
     <string name="exit">ゲームの終了</string>
     <string name="good_works">お疲れ様でした</string>
     <string name="return_opening">オープニング画面に戻る</string>
+    <string name="start">開始</string>
+    <string name="help">遊び方</string>
+    <string name="ranking">成績</string>
 
     <string name="sound_none">none</string>
     <string name="sound_none_note">soundless</string>
