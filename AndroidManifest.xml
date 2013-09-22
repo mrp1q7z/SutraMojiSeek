@@ -43,6 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.yojiokisoft.sutramojiseek.UsageActivity" >
+        </activity>
     </application>
 
 </manifest>

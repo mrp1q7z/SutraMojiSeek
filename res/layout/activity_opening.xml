@@ -38,20 +38,20 @@
         android:text="@string/settings" />
 
     <Button
-        android:id="@+id/help_button"
+        android:id="@+id/usage_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/setting_button"
         android:layout_centerHorizontal="true"
-        android:drawableLeft="@drawable/btn_help"
-        android:onClick="onExitButtonClicked"
-        android:text="@string/help" />
+        android:drawableLeft="@drawable/btn_usage"
+        android:onClick="onUsageButtonClicked"
+        android:text="@string/usage" />
 
     <Button
         android:id="@+id/score_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/help_button"
+        android:layout_below="@+id/usage_button"
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_ranking"
         android:onClick="onExitButtonClicked"

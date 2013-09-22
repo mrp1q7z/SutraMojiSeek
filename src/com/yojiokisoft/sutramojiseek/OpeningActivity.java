@@ -26,4 +26,10 @@ public class OpeningActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
+
+	public void onUsageButtonClicked(View view) {
+		Intent intent = new Intent(getApplicationContext(), UsageActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+	}
 }
