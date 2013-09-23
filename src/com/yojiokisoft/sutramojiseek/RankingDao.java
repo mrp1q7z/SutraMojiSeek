@@ -53,7 +53,7 @@ public class RankingDao {
 			if (mRankingDao == null) {
 				throw new RuntimeException("mRankingDao is null");
 			} else {
-				list = mRankingDao.queryForAll();
+				list = mRankingDao.queryBuilder().orderBy("score", false).query();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
