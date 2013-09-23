@@ -48,13 +48,13 @@
         android:text="@string/usage" />
 
     <Button
-        android:id="@+id/score_button"
+        android:id="@+id/ranking_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usage_button"
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/btn_ranking"
-        android:onClick="onExitButtonClicked"
+        android:onClick="onRankingButtonClicked"
         android:text="@string/ranking" />
 
 </RelativeLayout>

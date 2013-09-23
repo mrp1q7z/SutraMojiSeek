@@ -395,14 +395,61 @@ public class MainActivity extends Activity implements AdListener {
 		mTableRow[mCurrentLine].setBackgroundColor(Color.WHITE);
 	}
 
+	private RankingEntity setRanking(int okCnt, int ngCnt, int skipCnt,
+			long playTime, int speed) {
+		int score = okCnt * 1000 * speed;
+		score -= ngCnt * 100;
+		score -= skipCnt * 200;
+		score += ((183001 * (5 - speed) - playTime) / 1000) * 100;
+		
+		String level;
+		if (score > 1000000) {
+			level = "A";
+		} else if (score > 100000) {
+			level = "B";
+		} else if (score > 10000) {
+			level = "C";
+		} else if (score > 1000) {
+			level = "D";
+		} else if (score > 100) {
+			level = "E";
+		} else if (score > 10) {
+			level = "F";
+		} else if (score > 0) {
+			level = "G";
+		} else {
+			level = "Z";
+		}
+
+		RankingEntity data = new RankingEntity();
+		data.score = score;
+		data.okCnt = mOkCnt;
+		data.ngCnt = mNgCnt;
+		data.skipCnt = skipCnt;
+		data.playTime = playTime;
+		data.level = level;
+		data.lastUpdateTime = System.currentTimeMillis();
+		return data;
+	}
+
 	private void showScore() {
-		int passCnt = mSutraDao.getLength() - mOkCnt - mNgCnt;
-		String msg = String.format("○ : %1$03d", mOkCnt)
-				+ String.format("\n× : %1$03d", mNgCnt)
-				+ String.format("\n◇ : %1$03d", passCnt);
+		mState.setState(State.S_SCORE);
+
+		long playTime = mState.getPlayTime();
+		int speed = Integer.parseInt(mSettings.getSpeed());
+		int skipCnt = mSutraDao.getLength() - mOkCnt - mNgCnt;
+		RankingEntity data = setRanking(mOkCnt, mNgCnt, skipCnt, playTime,
+				speed);
+		RankingDao rankingDao = new RankingDao();
+		rankingDao.createOrUpdate(data);
+
+		String msg = "Score:" + data.score
+				+ String.format("\n(○ : %1$d", mOkCnt)
+				+ String.format(" × : %1$d", mNgCnt)
+				+ String.format(" ◇ : %1$d", skipCnt)
+				+ String.format(" T : %1$d)", playTime / 1000);
 		mScore.setText(msg);
 		mScoreContainer.setVisibility(View.VISIBLE);
-		mState.setState(State.S_SCORE);
 	}
 
 	public void onMokugyoButtonClicked(View view) {

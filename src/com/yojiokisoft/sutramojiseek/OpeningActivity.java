@@ -32,4 +32,10 @@ public class OpeningActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
+
+	public void onRankingButtonClicked(View view) {
+		Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+	}
 }
