@@ -1,13 +1,10 @@
 package com.yojiokisoft.sutramojiseek;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -48,9 +45,7 @@ public class MainActivity extends Activity implements AdListener {
 	private int mCurrentLine;
 	private State mState = new State();
 	private Handler mHandler = new Handler();
-	private long mMoveTime = 0;
-	private ArrayList<Integer> mInterval = new ArrayList<Integer>();
-	private ArrayList<Integer> mIntervalKeisoku = new ArrayList<Integer>();
+	private ArrayList<Integer> mInterval;
 	private int mOkCnt;
 	private int mNgCnt;
 
@@ -158,21 +153,6 @@ public class MainActivity extends Activity implements AdListener {
 		File file = new File(filePath);
 		file.getParentFile().mkdir();
 
-		FileOutputStream fos;
-		try {
-			fos = new FileOutputStream(file);
-			OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-			BufferedWriter bw = new BufferedWriter(osw);
-			for (int time : mIntervalKeisoku) {
-				String str = "" + time + "\n";
-				bw.write(str);
-			}
-			bw.flush();
-			bw.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		mHandler.removeCallbacks(mRhythmRunnable);
 		mSound.release();
 		if (mAdViewBanner != null) {
@@ -222,6 +202,7 @@ public class MainActivity extends Activity implements AdListener {
 	}
 
 	private void readInterval() {
+		mInterval = new ArrayList<Integer>();
 		AssetManager assetManager = getResources().getAssets();
 		InputStream is;
 		String line = "";
@@ -446,10 +427,6 @@ public class MainActivity extends Activity implements AdListener {
 
 	private void nextMoji(String clickMoji) {
 		long startTime = System.currentTimeMillis();
-		// debug >>>
-		int time = (int) (startTime - mMoveTime);
-		mIntervalKeisoku.add(time);
-		// debug <<<
 
 		if (mSoundId != 0) {
 			mSound.stop(mSoundId);
@@ -479,8 +456,6 @@ public class MainActivity extends Activity implements AdListener {
 
 		long procTime = (System.currentTimeMillis() - startTime);
 		setTimer(index, procTime);
-
-		mMoveTime = System.currentTimeMillis();
 	}
 
 	private void setTimer(int index, long procTime) {
