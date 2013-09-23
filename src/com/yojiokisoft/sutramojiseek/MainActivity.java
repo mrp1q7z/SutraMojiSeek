@@ -294,7 +294,8 @@ public class MainActivity extends Activity implements AdListener {
 			}
 
 			if (pause) {
-				if (mState.getState() == State.S_PLAY) {
+				if (mState.getState() == State.S_PLAY
+						|| mState.getState() == State.S_INIT) {
 					mPauseContainer.setVisibility(View.VISIBLE);
 					mState.setState(State.S_PAUSE);
 				}
