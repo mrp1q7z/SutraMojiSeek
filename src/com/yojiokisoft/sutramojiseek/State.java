@@ -4,6 +4,8 @@ public class State {
 	private int mState = S_INIT;
 	private long mStartTime;
 	private long mEndTime;
+	private long mPauseTime;
+	private long mPauseStart;
 
 	/** 初期状態 */
 	public static final int S_INIT = 0;
@@ -22,16 +24,23 @@ public class State {
 	}
 
 	public void setState(int state) {
+		if (mState == state) {
+			return;
+		}
 		if (mState == S_INIT && state == S_PLAY) {
 			mStartTime = System.currentTimeMillis();
-		}
-		if (mState == S_PLAY && state == S_SCORE) {
+			mPauseTime = 0;
+		} else if (mState == S_PLAY && state == S_SCORE) {
 			mEndTime = System.currentTimeMillis();
+		} else if (state == S_PAUSE) {
+			mPauseStart = System.currentTimeMillis();
+		} else if (mState == S_PAUSE) {
+			mPauseTime += System.currentTimeMillis() - mPauseStart;
 		}
 		mState = state;
 	}
-	
+
 	public long getPlayTime() {
-		return (mEndTime - mStartTime);
+		return (mEndTime - mStartTime - mPauseTime);
 	}
 }
