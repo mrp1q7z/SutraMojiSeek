@@ -21,8 +21,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -40,8 +38,6 @@ public class MainActivity extends Activity implements AdListener {
 	private AdView mAdViewBanner;
 	private SoundPool mSound;
 	private int mSoundId;
-	private String mCurrentSoundName;
-	private LinearLayout mMokugyoContainer;
 	private LinearLayout mPauseContainer;
 	private LinearLayout mScoreContainer;
 	private TextView mScore;
@@ -72,8 +68,8 @@ public class MainActivity extends Activity implements AdListener {
 		}
 
 		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-		mCurrentSoundName = mSettings.getRhythmSound();
-		int resId = MyResource.getResourceIdByName(mCurrentSoundName, "raw");
+		int resId = MyResource.getResourceIdByName(mSettings.getRhythmSound(),
+				"raw");
 		if (resId == 0) {
 			mSoundId = 0;
 		} else {
@@ -86,9 +82,9 @@ public class MainActivity extends Activity implements AdListener {
 		mPauseContainer = (LinearLayout) findViewById(R.id.pause_container);
 		mScoreContainer = (LinearLayout) findViewById(R.id.score_container);
 		mScore = (TextView) findViewById(R.id.score);
-		mMokugyoContainer = (LinearLayout) findViewById(R.id.mokugyo_container);
+		LinearLayout mokugyoContainer = (LinearLayout) findViewById(R.id.mokugyo_container);
 		if (mSettings.getPMode()) {
-			mMokugyoContainer.setVisibility(View.VISIBLE);
+			mokugyoContainer.setVisibility(View.VISIBLE);
 		}
 
 		mButton = new Button[5][5];
@@ -148,52 +144,6 @@ public class MainActivity extends Activity implements AdListener {
 		mAdViewBanner = (AdView) findViewById(R.id.adViewBanner);
 		mAdViewBanner.setAdListener(this);
 		mAdViewBanner.loadAd(adRequest);
-	}
-
-	/**
-	 * メニューが選択された
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent intent;
-		switch (item.getItemId()) {
-		case R.id.action_settings:
-			intent = new Intent(getApplicationContext(), SettingsActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(intent);
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 前面に表示された
-	 */
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		String newSoundName = mSettings.getRhythmSound();
-		if (!mCurrentSoundName.equals(newSoundName)) {
-			if (mSoundId != 0) {
-				mSound.unload(mSoundId);
-			}
-
-			mCurrentSoundName = newSoundName;
-			int resId = MyResource
-					.getResourceIdByName(mCurrentSoundName, "raw");
-			if (resId == 0) {
-				mSoundId = 0;
-			} else {
-				mSoundId = mSound.load(getApplicationContext(), resId, 0);
-			}
-		}
-
-		if (mSettings.getPMode()) {
-			mMokugyoContainer.setVisibility(View.VISIBLE);
-		} else {
-			mMokugyoContainer.setVisibility(View.GONE);
-		}
 	}
 
 	/**
@@ -316,13 +266,6 @@ public class MainActivity extends Activity implements AdListener {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 	private View.OnClickListener mOnButtonClicked = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -401,7 +344,7 @@ public class MainActivity extends Activity implements AdListener {
 		score -= ngCnt * 100;
 		score -= skipCnt * 200;
 		score += ((183001 * (5 - speed) - playTime) / 1000) * 100;
-		
+
 		String level;
 		if (score > 1000000) {
 			level = "A";
