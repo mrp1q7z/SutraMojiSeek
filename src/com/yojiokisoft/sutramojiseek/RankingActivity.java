@@ -107,8 +107,7 @@ public class RankingActivity extends Activity {
 			RankingEntity item = mItems.get(position);
 			wrapper.no.setText("" + (position + 1));
 			wrapper.score.setText("" + item.score);
-			wrapper.cnt.setText("○:" + item.okCnt + " ×:" + item.ngCnt + " ◇:"
-					+ item.skipCnt + " Ｔ:" + item.playTime / 1000);
+			wrapper.cnt.setText(Score.getScoreDetail(item));
 			wrapper.level.setText(item.level);
 			SimpleDateFormat sdf = new SimpleDateFormat(
 					"yyyy/MM/dd(E) HH:mm:ss", Locale.JAPANESE);

@@ -1,5 +1,7 @@
 package com.yojiokisoft.sutramojiseek;
 
+import android.util.Log;
+
 public class State {
 	private int mState = S_INIT;
 	private long mStartTime;
@@ -41,6 +43,7 @@ public class State {
 	}
 
 	public long getPlayTime() {
+		Log.d("TAG", "ent=" + mEndTime + ",start=" + mStartTime + ",pause=" + mPauseTime);
 		return (mEndTime - mStartTime - mPauseTime);
 	}
 }
