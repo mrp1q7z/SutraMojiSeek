@@ -351,6 +351,7 @@ public class MainActivity extends Activity implements AdListener {
 	public void onMokugyoButtonClicked(View view) {
 		if (mState.getState() == State.S_INIT) {
 			mState.setState(State.S_PLAY);
+			MyResource.wakeLockAcquire();
 		}
 		nextMoji(null);
 	};
