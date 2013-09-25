@@ -117,14 +117,4 @@ public class SettingDao {
 		return mSharedPref.edit().putString(MyConst.PK_RHYTHM_SOUND, resName)
 				.commit();
 	}
-
-	/**
-	 * @return 合いの手を入れる
-	 */
-	public boolean getAinote() {
-		String strDef = mContext.getString(R.string.pref_ainote_default);
-		boolean def = (strDef.equals("true")) ? true : false;
-		boolean val = mSharedPref.getBoolean(MyConst.PK_AINOTE, def);
-		return val;
-	}
 }

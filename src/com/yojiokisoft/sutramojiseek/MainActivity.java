@@ -245,7 +245,7 @@ public class MainActivity extends Activity implements AdListener {
 		mButton[lineNumber][0].setTag(mSutraDao.eof() ? -1 : mSutraDao
 				.getCurrentPos() - 1);
 
-		if (mSettings.getAinote()) {
+		if (mAinoteId != 0) {
 			if (mSutraDao.isAinote(index)) {
 				mButton[lineNumber][0].setTextColor(Color.RED);
 			} else {
@@ -421,7 +421,7 @@ public class MainActivity extends Activity implements AdListener {
 		}
 
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
-		if (mSettings.getAinote()) {
+		if (mAinoteId != 0) {
 			if (mSutraDao.isAinote(index)) {
 				mSound.play(mAinoteId, 1.0F, 1.0F, 0, 0, 1.0F);
 			}
