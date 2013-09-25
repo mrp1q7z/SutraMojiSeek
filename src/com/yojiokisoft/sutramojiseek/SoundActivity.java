@@ -15,7 +15,6 @@
 
 package com.yojiokisoft.sutramojiseek;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -65,10 +64,10 @@ public class SoundActivity extends Activity {
 		mListView = (ListView) findViewById(R.id.sound_list);
 		String resName;
 		if ("Ainote".equals(mTarget)) {
-			mList = getSoundList2();
+			mList = SoundDao.getInstance().getAinoteSoundList();
 			resName = SettingDao.getInstance().getAinoteSound();
 		} else {
-			mList = getSoundList();
+			mList = SoundDao.getInstance().getRhythmSoundList();
 			resName = SettingDao.getInstance().getRhythmSound();
 		}
 
@@ -132,84 +131,6 @@ public class SoundActivity extends Activity {
 		super.onRestoreInstanceState(savedInstanceState);
 
 		mCheckedPosition = savedInstanceState.getInt("SAVE_POSITION");
-	}
-
-	/**
-	 * クリック音一覧の取得
-	 * 
-	 * @return
-	 */
-	private List<SoundEntity> getSoundList() {
-		List<SoundEntity> list = new ArrayList<SoundEntity>();
-
-		SoundEntity sound = new SoundEntity();
-		sound.title = getString(R.string.sound_none);
-		sound.description = getString(R.string.sound_none_note);
-		sound.resId = 0;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_drop);
-		sound.description = getString(R.string.sound_drop_note);
-		sound.resId = R.raw.mp_drop;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_hyu);
-		sound.description = getString(R.string.sound_hyu_note);
-		sound.resId = R.raw.mp_hyu;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_poku);
-		sound.description = getString(R.string.sound_poku_note);
-		sound.resId = R.raw.mp_poku;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_taiko);
-		sound.description = getString(R.string.sound_taiko_note);
-		sound.resId = R.raw.mp_taiko;
-		sound.checked = false;
-		list.add(sound);
-
-		return list;
-	}
-
-	/**
-	 * 合いの手の音一覧の取得
-	 * 
-	 * @return
-	 */
-	private List<SoundEntity> getSoundList2() {
-		List<SoundEntity> list = new ArrayList<SoundEntity>();
-
-		SoundEntity sound = new SoundEntity();
-		sound.title = getString(R.string.sound_none);
-		sound.description = getString(R.string.sound_none_note);
-		sound.resId = 0;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_gooon);
-		sound.description = getString(R.string.sound_gooon_note);
-		sound.resId = R.raw.mp_gooon;
-		sound.checked = false;
-		list.add(sound);
-
-		sound = new SoundEntity();
-		sound.title = getString(R.string.sound_chiiin);
-		sound.description = getString(R.string.sound_chiiin_note);
-		sound.resId = R.raw.mp_chiiin;
-		sound.checked = false;
-		list.add(sound);
-
-		return list;
 	}
 
 	/**

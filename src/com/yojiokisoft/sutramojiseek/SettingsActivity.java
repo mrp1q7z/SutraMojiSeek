@@ -73,6 +73,30 @@ public class SettingsActivity extends PreferenceActivity {
 		PreferenceScreen prefScreen = (PreferenceScreen) findPreference(MyConst.PK_RHYTHM_SOUND);
 		Intent intent = new Intent(this, SoundActivity.class);
 		prefScreen.setIntent(intent);
+
+		setSoundSummary();
+	}
+
+	private void setSoundSummary() {
+		SettingDao settings = SettingDao.getInstance();
+		SoundDao soundDao = SoundDao.getInstance();
+
+		Preference prefAinote = findPreference(MyConst.PK_AINOTE_SOUND);
+		SoundEntity sound = soundDao.getSound(settings.getAinoteSound());
+		prefAinote.setSummary(sound.title + " (" + sound.description + ")");
+
+		Preference prefRhythm = findPreference(MyConst.PK_RHYTHM_SOUND);
+		sound = soundDao.getSound(settings.getRhythmSound());
+		prefRhythm.setSummary(sound.title + " (" + sound.description + ")");
+	}
+
+	/**
+	 * 前面に表示された
+	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setSoundSummary();
 	}
 
 	/** {@inheritDoc} */
