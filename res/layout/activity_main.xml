@@ -252,6 +252,27 @@
             </TableRow>
         </TableLayout>
 
+        <LinearLayout
+            android:id="@+id/mokugyo_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <Button
+                android:id="@+id/mokugyo_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_poku"
+                android:onClick="onMokugyoButtonClicked" />
+        </LinearLayout>
+
         <include layout="@layout/inc_main" />
     </FrameLayout>
 
