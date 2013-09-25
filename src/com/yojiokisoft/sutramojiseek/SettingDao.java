@@ -77,6 +77,27 @@ public class SettingDao {
 	}
 
 	/**
+	 * @return 合いの手の音
+	 */
+	public String getAinoteSound() {
+		String val = mSharedPref.getString(MyConst.PK_AINOTE_SOUND,
+				mContext.getString(R.string.pref_ainote_sound_default));
+		return val;
+	}
+
+	/**
+	 * 合いの手の音のセット
+	 * 
+	 * @param resName
+	 *            合いの手の音のリソース名
+	 * @return true=正常終了 false=エラー
+	 */
+	public boolean setAinoteSound(String resName) {
+		return mSharedPref.edit().putString(MyConst.PK_AINOTE_SOUND, resName)
+				.commit();
+	}
+
+	/**
 	 * @return リズム音
 	 */
 	public String getRhythmSound() {

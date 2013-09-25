@@ -21,12 +21,14 @@ import java.util.List;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * クリック音設定のアクティビティ
@@ -37,6 +39,7 @@ public class SoundActivity extends Activity {
 	private SoundPool mSound;
 	private int[] mSoundId;
 	private List<SoundEntity> mList;
+	private String mTarget;
 
 	/**
 	 * 初期処理
@@ -46,10 +49,29 @@ public class SoundActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sound);
 
-		mListView = (ListView) findViewById(R.id.sound_list);
-		mList = getSoundList();
+		Bundle extra = getIntent().getExtras();
+		String arg = null;
+		if (extra != null) {
+			if (extra.containsKey("arg")) {
+				arg = extra.getString("arg");
+			}
+		}
+		if ("ainote_sound".equals(arg)) {
+			mTarget = "Ainote";
+		} else {
+			mTarget = "Rhythm";
+		}
 
-		String resName = SettingDao.getInstance().getRhythmSound();
+		mListView = (ListView) findViewById(R.id.sound_list);
+		String resName;
+		if ("Ainote".equals(mTarget)) {
+			mList = getSoundList2();
+			resName = SettingDao.getInstance().getAinoteSound();
+		} else {
+			mList = getSoundList();
+			resName = SettingDao.getInstance().getRhythmSound();
+		}
+
 		int resId = MyResource.getResourceIdByName(resName, "raw");
 		String[] items = new String[mList.size()];
 		SoundEntity item;
@@ -74,9 +96,22 @@ public class SoundActivity extends Activity {
 			if (mList.get(i).resId == 0) {
 				mSoundId[i] = 0;
 			} else {
-				mSoundId[i] = mSound.load(getApplicationContext(), mList.get(i).resId, 0);
+				mSoundId[i] = mSound.load(getApplicationContext(),
+						mList.get(i).resId, 0);
 			}
 		}
+
+		mSound.setOnLoadCompleteListener(new OnLoadCompleteListener() {
+			@Override
+			public void onLoadComplete(SoundPool soundPool, int sampleId,
+					int status) {
+				if (0 == status) {
+					Toast.makeText(getApplicationContext(),
+							"LoadComplete id=" + sampleId, Toast.LENGTH_LONG)
+							.show();
+				}
+			}
+		});
 	}
 
 	/**
@@ -146,11 +181,44 @@ public class SoundActivity extends Activity {
 	}
 
 	/**
+	 * 合いの手の音一覧の取得
+	 * 
+	 * @return
+	 */
+	private List<SoundEntity> getSoundList2() {
+		List<SoundEntity> list = new ArrayList<SoundEntity>();
+
+		SoundEntity sound = new SoundEntity();
+		sound.title = getString(R.string.sound_none);
+		sound.description = getString(R.string.sound_none_note);
+		sound.resId = 0;
+		sound.checked = false;
+		list.add(sound);
+
+		sound = new SoundEntity();
+		sound.title = getString(R.string.sound_gooon);
+		sound.description = getString(R.string.sound_gooon_note);
+		sound.resId = R.raw.mp_gooon;
+		sound.checked = false;
+		list.add(sound);
+
+		sound = new SoundEntity();
+		sound.title = getString(R.string.sound_chiiin);
+		sound.description = getString(R.string.sound_chiiin_note);
+		sound.resId = R.raw.mp_chiiin;
+		sound.checked = false;
+		list.add(sound);
+
+		return list;
+	}
+
+	/**
 	 * クリック音が選択された
 	 */
 	private OnItemClickListener mSoundListItemClicked = new OnItemClickListener() {
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
 
 			if (mCheckedPosition != -1) {
 				if (mSoundId[mCheckedPosition] != 0) {
@@ -175,7 +243,11 @@ public class SoundActivity extends Activity {
 		if (resId != 0) {
 			resName = getResources().getResourceEntryName(resId);
 		}
-		SettingDao.getInstance().setRhythmSound(resName);
+		if ("Ainote".equals(mTarget)) {
+			SettingDao.getInstance().setAinoteSound(resName);
+		} else {
+			SettingDao.getInstance().setRhythmSound(resName);
+		}
 		finish();
 	}
 

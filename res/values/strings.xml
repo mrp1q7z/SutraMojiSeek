@@ -27,5 +27,9 @@
     <string name="sound_poku_note">knock</string>
     <string name="sound_taiko">Drum</string>
     <string name="sound_taiko_note">boom</string>
+    <string name="sound_chiiin">Buddhist altar</string>
+    <string name="sound_chiiin_note">ting</string>
+    <string name="sound_gooon">Gooon</string>
+    <string name="sound_gooon_note">Go - o - o - n</string>
 
 </resources>

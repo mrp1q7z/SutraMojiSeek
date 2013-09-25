@@ -64,13 +64,19 @@ public class MainActivity extends Activity implements AdListener {
 		}
 
 		mSound = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-		mAinoteId = mSound.load(getApplicationContext(), R.raw.mp_chiiin, 0);
 		int resId = MyResource.getResourceIdByName(mSettings.getRhythmSound(),
 				"raw");
 		if (resId == 0) {
 			mSoundId = 0;
 		} else {
 			mSoundId = mSound.load(getApplicationContext(), resId, 0);
+		}
+		resId = MyResource.getResourceIdByName(mSettings.getAinoteSound(),
+				"raw");
+		if (resId == 0) {
+			mAinoteId = 0;
+		} else {
+			mAinoteId = mSound.load(getApplicationContext(), resId, 0);
 		}
 
 		mSutraDao = SutraDao.getInstance();

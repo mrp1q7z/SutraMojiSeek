@@ -19,7 +19,6 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/pref_title_speed" />
-
     <ListPreference
         android:defaultValue="@string/pref_button_position_default"
         android:entries="@array/pref_button_position_titles"
@@ -35,6 +34,19 @@
         android:summary="@string/pref_summary_ainote"
         android:title="@string/pref_title_ainote" />
 
+    <PreferenceScreen
+        android:dependency="ainote"
+        android:key="ainote_sound"
+        android:title="@string/pref_title_ainote_sound" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.yojiokisoft.sutramojiseek.SoundActivity"
+            android:targetPackage="com.yojiokisoft.sutramojiseek" >
+            <extra
+                android:name="arg"
+                android:value="ainote_sound" />
+        </intent>
+    </PreferenceScreen>
     <PreferenceScreen
         android:key="rhythm_sound"
         android:title="@string/pref_title_rhythm_sound" />

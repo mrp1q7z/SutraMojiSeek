@@ -52,6 +52,9 @@ public class MyConst {
 	/** 設定キー：合いの手 */
 	public static final String PK_AINOTE = "ainote";
 
+	/** 設定キー：合いの手の音 */
+	public static final String PK_AINOTE_SOUND = "ainote_sound";
+
 	/** SQLiteのDB名 */
 	public static final String DATABASE_FILE = "sutramojiseek.db";
 
