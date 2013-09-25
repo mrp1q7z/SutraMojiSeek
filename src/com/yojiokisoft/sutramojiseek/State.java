@@ -4,6 +4,7 @@ import android.util.Log;
 
 public class State {
 	private int mState = S_INIT;
+	private int mOldState;
 	private long mStartTime;
 	private long mEndTime;
 	private long mPauseTime;
@@ -39,7 +40,15 @@ public class State {
 		} else if (mState == S_PAUSE) {
 			mPauseTime += System.currentTimeMillis() - mPauseStart;
 		}
+		mOldState = mState;
 		mState = state;
+	}
+	
+	/**
+	 * 前回の状態に戻す
+	 */
+	public void popState() {
+		setState(mOldState);
 	}
 
 	public long getPlayTime() {

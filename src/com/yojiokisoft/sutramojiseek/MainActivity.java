@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements AdListener {
 	private AdView mAdViewBanner;
 	private SoundPool mSound;
 	private int mSoundId;
+	private int mAinoteId;
 	private LinearLayout mPauseContainer;
 	private LinearLayout mScoreContainer;
 	private TextView mScore;
@@ -62,7 +63,8 @@ public class MainActivity extends Activity implements AdListener {
 			setContentView(R.layout.activity_main);
 		}
 
-		mSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+		mSound = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+		mAinoteId = mSound.load(getApplicationContext(), R.raw.mp_chiiin, 0);
 		int resId = MyResource.getResourceIdByName(mSettings.getRhythmSound(),
 				"raw");
 		if (resId == 0) {
@@ -232,9 +234,18 @@ public class MainActivity extends Activity implements AdListener {
 		int rand = MyRandom.random(1, max - 1);
 		String[] dummy = mSutraDao.randomRead(sutra, max - 2);
 
+		int index = mSutraDao.getCurrentPos() - 1;
 		mButton[lineNumber][0].setText(sutra);
 		mButton[lineNumber][0].setTag(mSutraDao.eof() ? -1 : mSutraDao
 				.getCurrentPos() - 1);
+
+		if (mSettings.getAinote()) {
+			if (mSutraDao.isAinote(index)) {
+				mButton[lineNumber][0].setTextColor(Color.RED);
+			} else {
+				mButton[lineNumber][0].setTextColor(Color.BLACK);
+			}
+		}
 		((MyButton) mButton[lineNumber][0]).setKana(mSutraDao.getKana());
 		int cnt = 0;
 		for (int i = 1; i < max; i++) {
@@ -349,7 +360,7 @@ public class MainActivity extends Activity implements AdListener {
 		setTimer(index - 1, 0);
 
 		mPauseContainer.setVisibility(View.INVISIBLE);
-		mState.setState(State.S_PLAY);
+		mState.popState();
 	}
 
 	public void clearScore() {
@@ -403,6 +414,11 @@ public class MainActivity extends Activity implements AdListener {
 		}
 
 		int index = (Integer) mButton[mCurrentLine][0].getTag();
+		if (mSettings.getAinote()) {
+			if (mSutraDao.isAinote(index)) {
+				mSound.play(mAinoteId, 1.0F, 1.0F, 0, 0, 1.0F);
+			}
+		}
 		if (index == -1) {
 			showScore();
 			MyResource.wakeLockRelease();

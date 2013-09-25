@@ -49,6 +49,9 @@ public class MyConst {
 	/** 設定キー：ボタン配置（左） */
 	public static final String PK_BUTTON_POSITIONS_LEFT = "l";
 	
+	/** 設定キー：合いの手 */
+	public static final String PK_AINOTE = "ainote";
+
 	/** SQLiteのDB名 */
 	public static final String DATABASE_FILE = "sutramojiseek.db";
 

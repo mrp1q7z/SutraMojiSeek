@@ -29,6 +29,12 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_button_position" />
 
+    <CheckBoxPreference
+        android:defaultValue="@string/pref_ainote_default"
+        android:key="ainote"
+        android:summary="@string/pref_summary_ainote"
+        android:title="@string/pref_title_ainote" />
+
     <PreferenceScreen
         android:key="rhythm_sound"
         android:title="@string/pref_title_rhythm_sound" />

@@ -35,6 +35,10 @@
         <item>l</item>
     </string-array>
 
+    <string name="pref_title_ainote">合いの手を入れる</string>
+    <string name="pref_summary_ainote">途中のゴーンを鳴らします</string>
+    <string name="pref_ainote_default">false</string>
+
     <string name="pref_title_rhythm_sound">リズム音</string>
     <string name="pref_rhythm_sound_default">mp_taiko</string>
 

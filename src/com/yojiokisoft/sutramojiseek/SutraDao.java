@@ -120,4 +120,13 @@ public class SutraDao {
 	public int getLength() {
 		return mSutra.length();
 	}
+
+	public boolean isAinote(int index) {
+		if (index == 12 || index == 28 || index == 162 || index == 198
+				|| index == 256 || index == 264 || index == -1 || index == 277) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
