@@ -42,6 +42,15 @@
     </PreferenceScreen>
     <PreferenceScreen
         android:key="rhythm_sound"
-        android:title="@string/pref_title_rhythm_sound" />
+        android:title="@string/pref_title_rhythm_sound" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.yojiokisoft.sutramojiseek.SoundActivity"
+            android:targetPackage="com.yojiokisoft.sutramojiseek" >
+            <extra
+                android:name="arg"
+                android:value="rhythm_sound" />
+        </intent>
+    </PreferenceScreen>
 
 </PreferenceScreen>
