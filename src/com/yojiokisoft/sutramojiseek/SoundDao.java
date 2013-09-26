@@ -59,7 +59,13 @@ public class SoundDao {
 		list.add(getSound("mp_drop"));
 		list.add(getSound("mp_hyu"));
 		list.add(getSound("mp_poku"));
-		list.add(getSound("mp_taiko"));
+		list.add(getSound("se_syan"));
+		list.add(getSound("se_pachi"));
+		list.add(getSound("se_ton"));
+		list.add(getSound("se_clock"));
+		list.add(getSound("se_kan"));
+		list.add(getSound("se_tuketaiko"));
+		list.add(getSound("se_tuzumi"));
 
 		return list;
 	}
@@ -112,10 +118,40 @@ public class SoundDao {
 			sound.description = mContext.getString(R.string.sound_poku_note);
 			sound.resId = R.raw.mp_poku;
 			sound.checked = false;
-		} else if (resName.equals("mp_taiko")) {
-			sound.title = mContext.getString(R.string.sound_taiko);
-			sound.description = mContext.getString(R.string.sound_taiko_note);
-			sound.resId = R.raw.mp_taiko;
+		} else if (resName.equals("se_syan")) {
+			sound.title = mContext.getString(R.string.sound_syan);
+			sound.description = mContext.getString(R.string.sound_syan_note);
+			sound.resId = R.raw.se_syan;
+			sound.checked = false;
+		} else if (resName.equals("se_pachi")) {
+			sound.title = mContext.getString(R.string.sound_pachi);
+			sound.description = mContext.getString(R.string.sound_pachi_note);
+			sound.resId = R.raw.se_pachi;
+			sound.checked = false;
+		} else if (resName.equals("se_ton")) {
+			sound.title = mContext.getString(R.string.sound_ton);
+			sound.description = mContext.getString(R.string.sound_ton_note);
+			sound.resId = R.raw.se_ton;
+			sound.checked = false;
+		} else if (resName.equals("se_clock")) {
+			sound.title = mContext.getString(R.string.sound_clock);
+			sound.description = mContext.getString(R.string.sound_clock_note);
+			sound.resId = R.raw.se_clock;
+			sound.checked = false;
+		} else if (resName.equals("se_kan")) {
+			sound.title = mContext.getString(R.string.sound_kan);
+			sound.description = mContext.getString(R.string.sound_kan_note);
+			sound.resId = R.raw.se_kan;
+			sound.checked = false;
+		} else if (resName.equals("se_tuketaiko")) {
+			sound.title = mContext.getString(R.string.sound_tuketaiko);
+			sound.description = mContext.getString(R.string.sound_tuketaiko_note);
+			sound.resId = R.raw.se_tuketaiko;
+			sound.checked = false;
+		} else if (resName.equals("se_tuzumi")) {
+			sound.title = mContext.getString(R.string.sound_tuzumi);
+			sound.description = mContext.getString(R.string.sound_tuzumi_note);
+			sound.resId = R.raw.se_tuzumi;
 			sound.checked = false;
 		} else {
 			Log.d("TAG", "resName=" + resName);

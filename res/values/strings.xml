@@ -26,11 +26,23 @@
     <string name="sound_hyu_note">whizz</string>
     <string name="sound_poku">Wooden fish</string>
     <string name="sound_poku_note">knock</string>
-    <string name="sound_taiko">Drum</string>
-    <string name="sound_taiko_note">boom</string>
     <string name="sound_chiiin">Buddhist altar</string>
     <string name="sound_chiiin_note">ting</string>
     <string name="sound_gooon">Gooon</string>
     <string name="sound_gooon_note">Go - o - o - n</string>
+    <string name="sound_syan">ジングルベル</string>
+    <string name="sound_syan_note">シャン</string>
+    <string name="sound_pachi">拍手</string>
+    <string name="sound_pachi_note">パチ</string>
+    <string name="sound_ton">Drum</string>
+    <string name="sound_ton_note">トン</string>
+    <string name="sound_clock">時計</string>
+    <string name="sound_clock_note">コチ</string>
+    <string name="sound_kan">拍子木</string>
+    <string name="sound_kan_note">カン</string>
+    <string name="sound_tuketaiko">付け太鼓</string>
+    <string name="sound_tuketaiko_note">トン</string>
+    <string name="sound_tuzumi">鼓</string>
+    <string name="sound_tuzumi_note">ポン</string>
 
 </resources>
