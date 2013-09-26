@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements AdListener {
 	private AdView mAdViewBanner;
 	private SoundPool mSound;
 	private int mSoundId;
+	private int mStreamId;
 	private int mAinoteId;
 	private LinearLayout mPauseContainer;
 	private LinearLayout mScoreContainer;
@@ -66,6 +67,7 @@ public class MainActivity extends Activity implements AdListener {
 		mSound = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
 		int resId = MyResource.getResourceIdByName(mSettings.getRhythmSound(),
 				"raw");
+		mStreamId = 0;
 		if (resId == 0) {
 			mSoundId = 0;
 		} else {
@@ -408,8 +410,10 @@ public class MainActivity extends Activity implements AdListener {
 		long startTime = System.currentTimeMillis();
 
 		if (mSoundId != 0) {
-			mSound.stop(mSoundId);
-			mSound.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
+			if (mStreamId != 0) {
+				mSound.stop(mStreamId);
+			}
+			mStreamId = mSound.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
 		}
 
 		if (clickMoji != null) {
