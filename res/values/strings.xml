@@ -44,5 +44,9 @@
     <string name="sound_tuketaiko_note">トン</string>
     <string name="sound_tuzumi">鼓</string>
     <string name="sound_tuzumi_note">ポン</string>
+    <string name="sound_dora">ドラ</string>
+    <string name="sound_dora_note">ゴーン</string>
+    <string name="sound_onsa">音叉</string>
+    <string name="sound_onsa_note">キーン</string>
 
 </resources>

@@ -81,6 +81,8 @@ public class SoundDao {
 		list.add(getSound("none"));
 		list.add(getSound("mp_gooon"));
 		list.add(getSound("mp_chiiin"));
+		list.add(getSound("se2_dora"));
+		list.add(getSound("se2_onsa"));
 
 		return list;
 	}
@@ -152,6 +154,16 @@ public class SoundDao {
 			sound.title = mContext.getString(R.string.sound_tuzumi);
 			sound.description = mContext.getString(R.string.sound_tuzumi_note);
 			sound.resId = R.raw.se_tuzumi;
+			sound.checked = false;
+		} else if (resName.equals("se2_dora")) {
+			sound.title = mContext.getString(R.string.sound_dora);
+			sound.description = mContext.getString(R.string.sound_dora_note);
+			sound.resId = R.raw.se2_dora;
+			sound.checked = false;
+		} else if (resName.equals("se2_onsa")) {
+			sound.title = mContext.getString(R.string.sound_onsa);
+			sound.description = mContext.getString(R.string.sound_onsa_note);
+			sound.resId = R.raw.se2_onsa;
 			sound.checked = false;
 		} else {
 			Log.d("TAG", "resName=" + resName);
