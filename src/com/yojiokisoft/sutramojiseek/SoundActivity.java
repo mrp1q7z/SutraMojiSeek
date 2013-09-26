@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -39,6 +40,8 @@ public class SoundActivity extends Activity {
 	private int[] mSoundId;
 	private List<SoundEntity> mList;
 	private String mTarget;
+	private int mSoundPoolCompCnt;
+	private RelativeLayout mProgressContainer;
 
 	/**
 	 * 初期処理
@@ -61,6 +64,7 @@ public class SoundActivity extends Activity {
 			mTarget = "Rhythm";
 		}
 
+		mProgressContainer = (RelativeLayout) findViewById(R.id.progress_container);
 		mListView = (ListView) findViewById(R.id.sound_list);
 		String resName;
 		if ("Ainote".equals(mTarget)) {
@@ -100,14 +104,16 @@ public class SoundActivity extends Activity {
 			}
 		}
 
+		mSoundPoolCompCnt = 0;
 		mSound.setOnLoadCompleteListener(new OnLoadCompleteListener() {
 			@Override
 			public void onLoadComplete(SoundPool soundPool, int sampleId,
 					int status) {
 				if (0 == status) {
-					Toast.makeText(getApplicationContext(),
-							"LoadComplete id=" + sampleId, Toast.LENGTH_LONG)
-							.show();
+					mSoundPoolCompCnt++;
+					if (mSoundPoolCompCnt >= mList.size() - 1) {
+						mProgressContainer.setVisibility(View.INVISIBLE);
+					}
 				}
 			}
 		});

@@ -8,37 +8,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SoundActivity" >
 
-    <LinearLayout
-        android:id="@+id/button_container"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:padding="5dip" >
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/center"
+        android:onClick="onOkButtonClicked"
+        android:text="@string/ok" />
 
-        <Button
-            android:id="@+id/ok_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onOkButtonClicked"
-            android:text="@string/ok" />
-
-        <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onCancelButtonClicked"
-            android:text="@string/cancel" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/center"
+        android:onClick="onCancelButtonClicked"
+        android:text="@string/cancel" />
 
     <ListView
         android:id="@+id/sound_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_container"
+        android:layout_above="@+id/ok_button"
         android:layout_alignParentTop="true" >
     </ListView>
+
+    <RelativeLayout
+        android:id="@+id/progress_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8000"
+        android:clickable="true" >
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/progressBar"
+            android:text="@string/reading"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </RelativeLayout>
 
 </RelativeLayout>
