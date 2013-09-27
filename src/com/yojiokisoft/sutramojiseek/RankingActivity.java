@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * ランキングアクティビティ
@@ -39,7 +40,8 @@ public class RankingActivity extends Activity {
 		List<RankingEntity> list = null;
 		RankingDao cardDao = new RankingDao();
 		list = cardDao.queryForAll();
-		if (list == null) {
+		if (list == null || list.size() <= 0) {
+			Toast.makeText(this, "No Data", Toast.LENGTH_LONG).show();
 			return;
 		}
 		BaseAdapter adapter = new RankingAdapter(this, list);
