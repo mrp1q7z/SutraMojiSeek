@@ -50,6 +50,10 @@ public class RankingEntity implements Serializable {
 	@DatabaseField
 	public int skipCnt;
 
+	/** 読み上げる速さ */
+	@DatabaseField
+	public int speed;
+
 	/** プレイタイム */
 	@DatabaseField
 	public long playTime;

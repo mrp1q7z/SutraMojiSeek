@@ -47,6 +47,7 @@ public class Score {
 		data.okCnt = okCnt;
 		data.ngCnt = ngCnt;
 		data.skipCnt = skipCnt;
+		data.speed = speed;
 		data.playTime = playTime;
 		data.level = level;
 		data.lastUpdateTime = System.currentTimeMillis();
