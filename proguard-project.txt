@@ -18,3 +18,17 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# OrmLite uses reflection
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.j256.**
+-keepclassmembers class com.j256.** { *; }
+-keep enum com.j256.**
+-keepclassmembers enum com.j256.** { *; }
+-keep interface com.j256.**
+-keepclassmembers interface com.j256.** { *; }
+-keep public class * extends com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper {
+public <init>(android.content.Context);
+}
+-keepclassmembers class com.yojiokisoft.sutramojiseek.RankingEntity { *; }
