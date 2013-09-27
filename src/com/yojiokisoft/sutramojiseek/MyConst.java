@@ -48,7 +48,7 @@ public class MyConst {
 
 	/** 設定キー：ボタン配置（左） */
 	public static final String PK_BUTTON_POSITIONS_LEFT = "l";
-	
+
 	/** 設定キー：合いの手 */
 	public static final String PK_AINOTE = "ainote";
 
@@ -61,5 +61,23 @@ public class MyConst {
 	/** SQLiteのDB名のフルパス */
 	public static String getDatabasePath() {
 		return App.getInstance().getDatabasePath(DATABASE_FILE).toString();
+	}
+
+	/** バグファイル名(キャッチした) */
+	public static final String BUG_CAUGHT_FILE = "bug_caught.txt";
+
+	/** バグファイル名(キャッチされなかった) */
+	public static final String BUG_UNCAUGHT_FILE = "bug_uncaught.txt";
+
+	/** キャッチしたバグファイルのフルパス */
+	public static String getCaughtBugFilePath() {
+		return MyFile.pathCombine(App.getInstance().getAppDataPath(),
+				BUG_CAUGHT_FILE);
+	}
+
+	/** キャッチされなかったバグファイルのフルパス */
+	public static String getUncaughtBugFilePath() {
+		return MyFile.pathCombine(App.getInstance().getAppDataPath(),
+				BUG_UNCAUGHT_FILE);
 	}
 }

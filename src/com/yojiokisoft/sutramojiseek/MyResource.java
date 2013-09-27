@@ -15,7 +15,12 @@
 
 package com.yojiokisoft.sutramojiseek;
 
+import java.io.FileNotFoundException;
+
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 
@@ -63,7 +68,8 @@ public class MyResource {
 		wakeLockRelease();
 		PowerManager pm = (PowerManager) App.getInstance().getSystemService(
 				Context.POWER_SERVICE);
-		mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "My tag");
+		mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK,
+				"My tag");
 		mWakeLock.acquire();
 	}
 
@@ -73,5 +79,24 @@ public class MyResource {
 		}
 		mWakeLock.release();
 		mWakeLock = null;
+	}
+
+	/**
+	 * @return パッケージ情報
+	 */
+	public static PackageInfo getPackageInfo() {
+		App app = App.getInstance();
+		PackageInfo packageInfo = null;
+		try {
+			packageInfo = app.getPackageManager().getPackageInfo(
+					app.getPackageName(), PackageManager.GET_META_DATA);
+		} catch (NameNotFoundException e) {
+			try {
+				MyLog.writeStackTrace(MyConst.BUG_CAUGHT_FILE, e);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return packageInfo;
 	}
 }

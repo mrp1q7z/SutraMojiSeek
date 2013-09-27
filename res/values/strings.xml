@@ -18,6 +18,11 @@
     <string name="ranking">Record</string>
     <string name="reading">Loading...</string>
 
+    <string name="send">Send</string>
+	<string name="err_dialog_title">Error Reporting</string>
+	<string name="err_dialog_msg">Last time, it would exit with an error, I am sorry. The very helpful because it used to improve in the future, and you could send us the error the manufacturer. Information privacy is not sent.</string>
+	<string name="err_dialog_msg2">I am sorry. An unexpected error has occurred. The very helpful because it used to improve in the future, and you could send us the error the manufacturer. Information privacy is not sent.</string>
+
     <string name="sound_none">none</string>
     <string name="sound_none_note">soundless</string>
     <string name="sound_drop">Drop</string>
