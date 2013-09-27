@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">よんたく般若心経</string>
+    <string name="admob_id">ca-app-pub-4623298212622664/3911393437</string>
+    <string name="settings">設定</string>
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="pause">Paused</string>
+    <string name="resume">再開</string>
+    <string name="goto_top">最初から始める</string>
+    <string name="replay">リプレイ</string>
+    <string name="exit">ゲームの終了</string>
+    <string name="good_works">お疲れ様でした</string>
+    <string name="return_opening">オープニング画面に戻る</string>
+    <string name="start">開始</string>
+    <string name="usage">遊び方</string>
+    <string name="ranking">成績</string>
+    <string name="reading">読み込み中...</string>
+
+    <string name="sound_none">なし</string>
+    <string name="sound_none_note">無音</string>
+    <string name="sound_drop">水滴</string>
+    <string name="sound_drop_note">ポチャ</string>
+    <string name="sound_hyu">風</string>
+    <string name="sound_hyu_note">ヒュ</string>
+    <string name="sound_poku">木魚</string>
+    <string name="sound_poku_note">ポク</string>
+    <string name="sound_chiiin">おりん</string>
+    <string name="sound_chiiin_note">チーン</string>
+    <string name="sound_gooon">大磬／大きい鈴</string>
+    <string name="sound_gooon_note">カーン</string>
+    <string name="sound_syan">錫杖</string>
+    <string name="sound_syan_note">シャン</string>
+    <string name="sound_pachi">拍手</string>
+    <string name="sound_pachi_note">パチ</string>
+    <string name="sound_ton">太鼓</string>
+    <string name="sound_ton_note">トン</string>
+    <string name="sound_clock">時計</string>
+    <string name="sound_clock_note">コチ</string>
+    <string name="sound_kan">拍子木</string>
+    <string name="sound_kan_note">カン</string>
+    <string name="sound_tuketaiko">付け太鼓</string>
+    <string name="sound_tuketaiko_note">トン</string>
+    <string name="sound_tuzumi">鼓</string>
+    <string name="sound_tuzumi_note">ポン</string>
+    <string name="sound_dora">ドラ</string>
+    <string name="sound_dora_note">ゴーン</string>
+    <string name="sound_onsa">音叉</string>
+    <string name="sound_onsa_note">キーン/528Hz</string>
+
+</resources>

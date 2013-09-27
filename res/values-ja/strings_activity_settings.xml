@@ -1,0 +1,44 @@
+<resources>
+
+    <string name="pref_header_general">一般設定</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    
+    <string name="pref_title_pmode">練習モード</string>
+    <string name="pref_summary_pmode">ボタンを１つにします</string>
+    <string name="pref_pmode_default">false</string>
+
+    <string name="pref_title_speed">読み上げる速さ</string>
+    <string name="pref_speed_default">1</string>
+
+    <string-array name="pref_speed_titles">
+        <item>自分で</item>
+        <item>遅い</item>
+        <item>普通</item>
+        <item>速い</item>
+    </string-array>
+    <string-array name="pref_speed_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="pref_title_button_position">ボタン配置</string>
+    <string name="pref_button_position_default">r</string>
+
+    <string-array name="pref_button_position_titles">
+        <item>右（右利き用）</item>
+        <item>左（左利き用）</item>
+    </string-array>
+    <string-array name="pref_button_position_values">
+        <item>r</item>
+        <item>l</item>
+    </string-array>
+
+    <string name="pref_title_ainote_sound">合いの手の音</string>
+    <string name="pref_ainote_sound_default">mp_gooon</string>
+
+    <string name="pref_title_rhythm_sound">リズム音</string>
+    <string name="pref_rhythm_sound_default">mp_poku</string>
+
+</resources>
