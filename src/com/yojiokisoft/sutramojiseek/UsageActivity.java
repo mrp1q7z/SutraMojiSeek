@@ -15,6 +15,8 @@
 
 package com.yojiokisoft.sutramojiseek;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
@@ -31,6 +33,10 @@ public class UsageActivity extends Activity {
 		setContentView(R.layout.activity_usage);
 
 		WebView webView = (WebView) findViewById(R.id.webView);
-		webView.loadUrl("file:///android_asset/usage.html");
+		if (Locale.JAPAN.equals(Locale.getDefault())) {
+			webView.loadUrl("file:///android_asset/usage-ja.html");
+		} else {
+			webView.loadUrl("file:///android_asset/usage.html");
+		}
 	}
 }
